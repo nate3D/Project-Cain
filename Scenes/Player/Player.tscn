@@ -1,0 +1,147 @@
+[gd_scene load_steps=19 format=2]
+
+[ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Player/PlayerFSM.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Player/StateAir.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Player/StateIdle.gd" type="Script" id=4]
+[ext_resource path="res://Scenes/Player/StateJump.gd" type="Script" id=5]
+[ext_resource path="res://Scenes/Player/StateLadder.gd" type="Script" id=6]
+[ext_resource path="res://Scenes/Player/StateSwim.gd" type="Script" id=7]
+[ext_resource path="res://Scenes/Player/StateWalk.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Water/Waves.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Sprites/Dark/Gunslinger/Gunslinger/Gunslinger 48x48 Sprite Sheet GUN 1.png" type="Texture" id=10]
+[ext_resource path="res://Scenes/Player/SkinSelector.gd" type="Script" id=11]
+[ext_resource path="res://Animations/idle.tres" type="Animation" id=12]
+[ext_resource path="res://Animations/walk.tres" type="Animation" id=13]
+
+[sub_resource type="Animation" id=1]
+resource_name = "air"
+length = 0.1
+loop = true
+
+[sub_resource type="Animation" id=2]
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 36 ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 1.8
+loop = true
+step = 0.05
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 15.5, 13.5 )
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 5.0
+height = 12.3406
+
+[node name="Player" type="KinematicBody2D"]
+collision_layer = 3
+collision_mask = 0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="JumpTimer" type="Timer" parent="Timers"]
+wait_time = 0.06
+one_shot = true
+
+[node name="FloorTimer" type="Timer" parent="Timers"]
+wait_time = 0.1
+one_shot = true
+
+[node name="LadderTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="PlatformTimer" type="Timer" parent="Timers"]
+wait_time = 0.2
+one_shot = true
+
+[node name="PlayerStates" type="Node2D" parent="."]
+script = ExtResource( 2 )
+
+[node name="Air" type="Node2D" parent="PlayerStates"]
+script = ExtResource( 3 )
+
+[node name="Idle" type="Node2D" parent="PlayerStates"]
+script = ExtResource( 4 )
+tag = "idle"
+
+[node name="Jump" type="Node2D" parent="PlayerStates"]
+script = ExtResource( 5 )
+tag = "jump"
+
+[node name="Ladder" type="Node2D" parent="PlayerStates"]
+script = ExtResource( 6 )
+
+[node name="Swim" type="Node2D" parent="PlayerStates"]
+script = ExtResource( 7 )
+tag = "swim"
+
+[node name="Walk" type="Node2D" parent="PlayerStates"]
+script = ExtResource( 8 )
+tag = "walk"
+
+[node name="Waves" parent="." instance=ExtResource( 9 )]
+position = Vector2( 0, 15 )
+z_index = 0
+amount = 20
+preprocess = 1.0
+explosiveness = 0.0
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 10 )
+hframes = 9
+vframes = 11
+frame = 36
+region_enabled = true
+region_rect = Rect2( -2, 12, 432, 518 )
+region_filter_clip = true
+script = ExtResource( 11 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+playback_speed = 3.0
+anims/air = SubResource( 1 )
+anims/idle = ExtResource( 12 )
+anims/jump = SubResource( 2 )
+anims/ladder = SubResource( 3 )
+anims/walk = ExtResource( 13 )
+
+[node name="TerrainBox" type="CollisionShape2D" parent="."]
+position = Vector2( 0.5, 0.5 )
+z_index = 100
+shape = SubResource( 4 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+z_index = 5
+collision_layer = 1024
+collision_mask = 32768
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="HurtBox" type="CollisionShape2D" parent="KinematicBody2D"]
+z_index = 100
+shape = SubResource( 5 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="timeout" from="Timers/PlatformTimer" to="." method="_on_PlatformTimer_timeout"]
