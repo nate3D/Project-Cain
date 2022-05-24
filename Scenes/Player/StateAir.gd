@@ -11,7 +11,11 @@ func enter(player: KinematicBody2D):
 		.enter(player) # Base class
 
 func run(player: KinematicBody2D):
-	player.vx = player.horizontal * midair_speed
+	# Handle running speed modifier
+	var speed_modifier = midair_speed
+	if player.running:
+		speed_modifier = get_node('../Run').get_run_speed()
+	player.vx = player.horizontal * speed_modifier
 	player.apply_gravity(player.gravity)
 	player.move()
 	if player.ladder_area and player.vertical != 0:
