@@ -1,13 +1,13 @@
 extends BasePlayerState
 
-export var walk_speed : float = 300
+export var run_speed : float = 500
 
 func run(player: KinematicBody2D):
-	player.play("walk")
+	player.play("run")
 	if player.vertical > 0:
 		player.collision_layer = 1
 		player.platform_timer.start()
-	player.vx = player.horizontal * walk_speed
+	player.vx = player.horizontal * run_speed
 	player.apply_gravity(player.gravity)
 	player.move()
 	if player.ladder_area and (\
@@ -15,8 +15,8 @@ func run(player: KinematicBody2D):
 		(player.vertical > 0 and player.ladder_tip)\
 	):
 		return "ladder"
-	if player.running:
-		return "run"
+	if !player.running:
+		return "walk"
 	if player.underwater:
 		return "swim"
 	if not player.is_on_floor():

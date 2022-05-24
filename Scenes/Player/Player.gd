@@ -12,6 +12,7 @@ var vx: float = 0 setget _set_vx, _get_vx
 var vy: float = 0 setget _set_vy, _get_vy
 
 var underwater : bool = false
+var running : bool = false
 var grounded : bool = false setget ,_get_grounded
 var jumping : bool = false setget ,_get_jumping
 var ladder_area : bool = false
@@ -46,6 +47,10 @@ func update_inputs():
 		- int(Input.is_action_pressed("ui_up"))
 	)
 	up = Input.is_action_pressed("ui_up")
+	if Input.is_action_pressed("run"):
+		running = true
+	else:
+		running = false
 	if Input.is_action_just_pressed("ui_accept"):
 		jump_timer.start()
 	if is_on_floor():

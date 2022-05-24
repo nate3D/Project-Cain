@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/PlayerFSM.gd" type="Script" id=2]
@@ -13,6 +13,7 @@
 [ext_resource path="res://Scenes/Player/SkinSelector.gd" type="Script" id=11]
 [ext_resource path="res://Animations/idle.tres" type="Animation" id=12]
 [ext_resource path="res://Animations/walk.tres" type="Animation" id=13]
+[ext_resource path="res://Scenes/Player/StateRun.gd" type="Script" id=14]
 
 [sub_resource type="Animation" id=1]
 resource_name = "air"
@@ -38,6 +39,24 @@ tracks/0/keys = {
 length = 1.8
 loop = true
 step = 0.05
+
+[sub_resource type="Animation" id=6]
+resource_name = "run"
+length = 0.75
+loop = true
+step = 0.15
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.15, 0.3, 0.45, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 11, 12, 13, 14, 16 ]
+}
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 15.5, 13.5 )
@@ -97,6 +116,10 @@ tag = "swim"
 script = ExtResource( 8 )
 tag = "walk"
 
+[node name="Run" type="Node2D" parent="PlayerStates"]
+script = ExtResource( 14 )
+tag = "run"
+
 [node name="Waves" parent="." instance=ExtResource( 9 )]
 position = Vector2( 0, 15 )
 z_index = 0
@@ -108,7 +131,7 @@ explosiveness = 0.0
 texture = ExtResource( 10 )
 hframes = 9
 vframes = 11
-frame = 36
+frame = 16
 region_enabled = true
 region_rect = Rect2( -2, 12, 432, 518 )
 region_filter_clip = true
@@ -123,6 +146,7 @@ anims/air = SubResource( 1 )
 anims/idle = ExtResource( 12 )
 anims/jump = SubResource( 2 )
 anims/ladder = SubResource( 3 )
+anims/run = SubResource( 6 )
 anims/walk = ExtResource( 13 )
 
 [node name="TerrainBox" type="CollisionShape2D" parent="."]
