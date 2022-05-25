@@ -4,6 +4,8 @@ signal hud
 
 export var gravity : float = 60
 
+export (PackedScene) var Bullet
+
 var horizontal : int = 0
 var vertical : int = 0
 var up : bool = false
@@ -47,6 +49,8 @@ func update_inputs():
 		- int(Input.is_action_pressed("ui_up"))
 	)
 	up = Input.is_action_pressed("ui_up")
+	if Input.is_action_just_pressed("shoot"):
+		shoot()
 	if Input.is_action_pressed("run"):
 		running = true
 	else:
@@ -76,6 +80,11 @@ func tween_to_ladder():
 
 func can_climb():
 	return ladder_area and ladder_timer.is_stopped()
+	
+func shoot():
+	var b = Bullet.instance()
+	owner.add_child(b)
+	b.shoot(get_global_mouse_position(), global_position)
 
 ###########################################################
 # Setget

@@ -10,10 +10,10 @@
 [ext_resource path="res://Scenes/Player/StateWalk.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/Water/Waves.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Sprites/Dark/Gunslinger/Gunslinger/Gunslinger 48x48 Sprite Sheet GUN 1.png" type="Texture" id=10]
-[ext_resource path="res://Scenes/Player/SkinSelector.gd" type="Script" id=11]
 [ext_resource path="res://Animations/idle.tres" type="Animation" id=12]
 [ext_resource path="res://Animations/walk.tres" type="Animation" id=13]
 [ext_resource path="res://Scenes/Player/StateRun.gd" type="Script" id=14]
+[ext_resource path="res://Scenes/Weapon/Gunslinger/RoundProjectile.tscn" type="PackedScene" id=15]
 
 [sub_resource type="Animation" id=1]
 resource_name = "air"
@@ -65,13 +65,11 @@ extents = Vector2( 15.5, 13.5 )
 radius = 5.0
 height = 12.3406
 
-[node name="Player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D" groups=["players"]]
 collision_layer = 3
 collision_mask = 0
 script = ExtResource( 1 )
-__meta__ = {
-"_edit_lock_": true
-}
+Bullet = ExtResource( 15 )
 
 [node name="Timers" type="Node2D" parent="."]
 
@@ -131,14 +129,9 @@ explosiveness = 0.0
 texture = ExtResource( 10 )
 hframes = 9
 vframes = 11
-frame = 16
-region_enabled = true
+frame = 14
 region_rect = Rect2( -2, 12, 432, 518 )
 region_filter_clip = true
-script = ExtResource( 11 )
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
 playback_speed = 3.0
@@ -150,7 +143,8 @@ anims/run = SubResource( 6 )
 anims/walk = ExtResource( 13 )
 
 [node name="TerrainBox" type="CollisionShape2D" parent="."]
-position = Vector2( 0.5, 0.5 )
+visible = false
+position = Vector2( 0, 10 )
 z_index = 100
 shape = SubResource( 4 )
 
@@ -158,11 +152,10 @@ shape = SubResource( 4 )
 z_index = 5
 collision_layer = 1024
 collision_mask = 32768
-__meta__ = {
-"_edit_lock_": true
-}
 
 [node name="HurtBox" type="CollisionShape2D" parent="KinematicBody2D"]
+visible = false
+position = Vector2( 0, 10 )
 z_index = 100
 shape = SubResource( 5 )
 
