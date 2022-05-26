@@ -1,16 +1,15 @@
-# [Godot] Platformer Player FSM
-A Player state machine demo in Godot.
+# [Godot] Project Cain
+An open-source, community-developed 2D platformer using Godot. This is intended to be a fun learning project for myself and the community with the eventual goal to publish on the Steam marketplace.
 
-## [:tv: Video sample](http://www.youtube.com/watch?v=L62vRaYsDRw)
-[![Preview image failed to load!](https://i.postimg.cc/pL97fXQn/preview.gif)](http://www.youtube.com/watch?v=L62vRaYsDRw)
+### Game Concept
+Project Cain will be a roguelite, dungeon-crawling 2D platformer. The concept is inspired from Binding of Isaac and Risk of Rain 1 & 2. Enemies will drop currency that the player will use to buy items from merchants hidden within the levels. These items will synergize and stack successively. At the end of each dungeon (stage) the player will face a boss fight to proceed to the next level in the dungeon. Successfully beating a boss will result in 3 random boss-pool items of which the player may choose only one for free.
 
 ## Features
- - Edge jump tolerance (jump button press)
- - Floor anticipation (jump button press)
- - One-way platforms
- - 6 states
+ - Finite State Machine for handling player interaction ([FlavioFS FSM](https://github.com/FlavioFS/godot-platformer-state-machine))
+ - DARK Series assets ([Penusbmic](https://penusbmic.itch.io/))
+ - Eventual FREE Steam release!
 
-## How does it work?
+## How does the state machine work (credit to FlavioFS)
 The player finite state machine (aka. PlayerFSM) switches among 6 states:
  - [Air (StateAir)](godot/Scenes/Player/StateAir.gd)
  - [Idle (StateIdle)](godot/Scenes/Player/StateIdle.gd)
@@ -18,16 +17,18 @@ The player finite state machine (aka. PlayerFSM) switches among 6 states:
  - [Ladder (StateLadder)](godot/Scenes/Player/StateLadder.gd)
  - [Swim (StateSwim)](godot/Scenes/Player/StateSwim.gd)
  - [Walk (StateWalk)](godot/Scenes/Player/StateWalk.gd)
+ - [Run (StateRun)](godot/Scenes/Player/StateRun.gd)
 
 Those states inherit from [BasePlayerState](godot/Scenes/Player/BasePlayerState.gd) and the machine is controlled by [PlayerFSM](godot/Scenes/Player/PlayerFSM.gd).
 
 The player itself ([Player.gd](godot/Scenes/Player/Player.gd)), which is a KinematicBody2D node, runs the PlayerFSM every frame.
 
-# Extra - Skin selector
-Through the **tool** keyword, it is possible to change player skin before runtime, within the engine editor:
- - [SkinSelector](godot/Scenes/Player/SkinSelector.gd)
+[FlavioFS MIT License](FlavioFS_License)
 
-The skins are located in the [skins directory](godot/Sprites/Player).
-
-## [:tv: Video Sample](http://www.youtube.com/watch?v=3_7PjK7vzG4)
-[![Preview image failed to load!](https://i.postimg.cc/kGsrp1D6/extra.gif)](http://www.youtube.com/watch?v=3_7PjK7vzG4)
+## Roadmap
+- [x] Base Assets (DARK Series - [Penusbmic](https://penusbmic.itch.io/))
+- [ ] Enemy AI
+- [ ] Procedural map generation ([GDQuest](https://github.com/GDQuest/godot-procedural-generation))
+- [ ] Modular (Procedural) weapons/items
+- [ ] Item pools
+- [ ] And much more to come...
