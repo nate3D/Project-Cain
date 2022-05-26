@@ -123,6 +123,10 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
+[node name="ShootTimer" type="Timer" parent="Timers"]
+wait_time = 0.4
+one_shot = true
+
 [node name="PlayerStates" type="Node2D" parent="."]
 visible = false
 script = ExtResource( 2 )

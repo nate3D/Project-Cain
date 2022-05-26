@@ -45,10 +45,17 @@ config/icon="res://icon.png"
 [debug]
 
 settings/fps/force_fps=60
+gdscript/completion/autocomplete_setters_and_getters=true
+gdscript/warnings/unused_class_variable=true
+gdscript/warnings/unsafe_property_access=true
+gdscript/warnings/unsafe_method_access=true
+gdscript/warnings/unsafe_cast=true
+gdscript/warnings/unsafe_call_argument=true
 
 [display]
 
 window/vsync/use_vsync=false
+window/stretch/mode="2d"
 window/stretch/aspect="keep"
 
 [gdnative]

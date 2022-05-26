@@ -17,6 +17,7 @@ var underwater : bool = false
 var running : bool = false
 var grounded : bool = false setget ,_get_grounded
 var jumping : bool = false setget ,_get_jumping
+var shooting : bool = false setget ,_get_shooting
 var ladder_area : bool = false
 var ladder_tip : bool = false
 var ladder_x : float
@@ -26,6 +27,7 @@ onready var jump_timer : Timer = $Timers/JumpTimer
 onready var floor_timer : Timer = $Timers/FloorTimer
 onready var ladder_timer : Timer = $Timers/LadderTimer
 onready var platform_timer : Timer = $Timers/PlatformTimer
+onready var shoot_timer : Timer = $Timers/ShootTimer
 onready var sprite : Sprite = $Gunslinger
 onready var anim : AnimationPlayer = $Gunslinger/AnimationPlayer
 onready var state_machine: PlayerFSM = $PlayerStates
@@ -54,8 +56,9 @@ func update_inputs():
 		- int(Input.is_action_pressed("ui_up"))
 	)
 	up = Input.is_action_pressed("ui_up")
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") && not _get_shooting():
 		shoot()
+		shoot_timer.start()
 	running = Input.is_action_pressed("run")
 	if Input.is_action_just_pressed("ui_accept"):
 		jump_timer.start()
@@ -119,6 +122,10 @@ func _get_grounded():
 func _get_jumping():
 	jumping = not jump_timer.is_stopped()
 	return jumping
+	
+func _get_shooting():
+	shooting = not shoot_timer.is_stopped()
+	return shooting
 ###########################################################
 
 func _on_PlatformTimer_timeout():
