@@ -85,7 +85,6 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=9]
 resource_name = "shoot"
 length = 0.4
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:frame")
 tracks/0/interp = 1

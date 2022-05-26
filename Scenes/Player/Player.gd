@@ -20,6 +20,7 @@ var jumping : bool = false setget ,_get_jumping
 var ladder_area : bool = false
 var ladder_tip : bool = false
 var ladder_x : float
+var flip : bool = false
 
 onready var jump_timer : Timer = $Timers/JumpTimer
 onready var floor_timer : Timer = $Timers/FloorTimer
@@ -32,12 +33,14 @@ onready var tween : Tween = $Tween
 onready var waves : Particles2D = $Waves
 onready var gun_pivot : Position2D = $GunPivot
 onready var gun1 : Sprite = $GunPivot/Gun1
+onready var gun1_anim : AnimationPlayer = $GunPivot/Gun1/AnimationPlayer
 
 func _ready():
 	state_machine.init(self)
 
 func _physics_process(delta):
 	update_inputs()
+	update_player()
 	state_machine.run()
 	emit_signal("hud", "%s" % state_machine.active_state.tag)
 
@@ -53,14 +56,15 @@ func update_inputs():
 	up = Input.is_action_pressed("ui_up")
 	if Input.is_action_just_pressed("shoot"):
 		shoot()
-	if Input.is_action_pressed("run"):
-		running = true
-	else:
-		running = false
+	running = Input.is_action_pressed("run")
 	if Input.is_action_just_pressed("ui_accept"):
 		jump_timer.start()
 	if is_on_floor():
 		floor_timer.start()
+		
+func update_player():
+	sprite.flip_h = flip
+	gun1.flip_v = flip
 
 func move():
 	var old = velocity
@@ -86,7 +90,10 @@ func can_climb():
 func shoot():
 	var b = Bullet.instance()
 	owner.add_child(b)
-	b.shoot(get_global_mouse_position(), gun_pivot.global_position)
+	b.shoot(get_global_mouse_position(), gun1.global_position)
+	gun1_anim.play('shoot')
+	yield(gun1_anim, "animation_finished")
+	gun1_anim.play('idle')
 
 ###########################################################
 # Setget
@@ -95,8 +102,7 @@ func _get_vx():
 	return vx
 func _set_vx(val:float):
 	if val != 0:
-		gun1.flip_v = (val < 0)
-		sprite.flip_h = (val < 0)
+		flip = (val < 0)
 	velocity.x = val
 	vx = val
 

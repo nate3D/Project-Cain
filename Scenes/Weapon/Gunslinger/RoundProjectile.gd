@@ -2,13 +2,12 @@ extends Area2D
 
 var speed = 1000
 var direction = Vector2()
-onready var anim : AnimationPlayer = $Gun1/AnimationPlayer
 
 func shoot(aim_position, gun_position):
 	global_position = gun_position
 	direction = (aim_position - gun_position).normalized()
 	rotation = direction.angle()
-	#anim.play('shoot')
+
 	
 func _physics_process(delta):
 	position += direction * speed * delta
