@@ -7,9 +7,10 @@
 [node name="DarkWorld" type="Node"]
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
-position = Vector2( 336, 469 )
+position = Vector2( 342, 456 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
+visible = false
 current = true
 zoom = Vector2( 0.75, 0.75 )
 

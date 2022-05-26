@@ -25,11 +25,13 @@ onready var jump_timer : Timer = $Timers/JumpTimer
 onready var floor_timer : Timer = $Timers/FloorTimer
 onready var ladder_timer : Timer = $Timers/LadderTimer
 onready var platform_timer : Timer = $Timers/PlatformTimer
-onready var sprite : Sprite = $Sprite
-onready var anim : AnimationPlayer = $Sprite/AnimationPlayer
+onready var sprite : Sprite = $Gunslinger
+onready var anim : AnimationPlayer = $Gunslinger/AnimationPlayer
 onready var state_machine: PlayerFSM = $PlayerStates
 onready var tween : Tween = $Tween
 onready var waves : Particles2D = $Waves
+onready var gun_pivot : Position2D = $GunPivot
+onready var gun1 : Sprite = $GunPivot/Gun1
 
 func _ready():
 	state_machine.init(self)
@@ -84,7 +86,7 @@ func can_climb():
 func shoot():
 	var b = Bullet.instance()
 	owner.add_child(b)
-	b.shoot(get_global_mouse_position(), global_position)
+	b.shoot(get_global_mouse_position(), gun_pivot.global_position)
 
 ###########################################################
 # Setget
@@ -93,6 +95,7 @@ func _get_vx():
 	return vx
 func _set_vx(val:float):
 	if val != 0:
+		gun1.flip_v = (val < 0)
 		sprite.flip_h = (val < 0)
 	velocity.x = val
 	vx = val

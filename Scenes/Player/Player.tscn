@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/PlayerFSM.gd" type="Script" id=2]
@@ -9,11 +9,20 @@
 [ext_resource path="res://Scenes/Player/StateSwim.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/Player/StateWalk.gd" type="Script" id=8]
 [ext_resource path="res://Scenes/Water/Waves.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Sprites/Dark/Gunslinger/Gunslinger/Gunslinger 48x48 Sprite Sheet GUN 1.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Dark/Gunslinger/Gunslinger/Gunslinger 48x48 Sprite Sheet no weapons for sprite stacking.png" type="Texture" id=10]
+[ext_resource path="res://Sprites/Dark/Gunslinger/Gun/Guns Sprite Sheet 32x32.png" type="Texture" id=11]
 [ext_resource path="res://Animations/idle.tres" type="Animation" id=12]
 [ext_resource path="res://Animations/walk.tres" type="Animation" id=13]
 [ext_resource path="res://Scenes/Player/StateRun.gd" type="Script" id=14]
 [ext_resource path="res://Scenes/Weapon/Gunslinger/RoundProjectile.tscn" type="PackedScene" id=15]
+[ext_resource path="res://Scenes/Player/GunPivot.gd" type="Script" id=16]
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 6.5, 13.5 )
+
+[sub_resource type="CapsuleShape2D" id=5]
+radius = 5.0
+height = 12.3406
 
 [sub_resource type="Animation" id=1]
 resource_name = "air"
@@ -23,7 +32,7 @@ loop = true
 [sub_resource type="Animation" id=2]
 length = 0.8
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
+tracks/0/path = NodePath(".:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -31,8 +40,8 @@ tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 36 ]
+"update": 0,
+"values": [ Vector2( 0, 6 ) ]
 }
 
 [sub_resource type="Animation" id=3]
@@ -58,12 +67,37 @@ tracks/0/keys = {
 "values": [ 11, 12, 13, 14, 16 ]
 }
 
-[sub_resource type="RectangleShape2D" id=4]
-extents = Vector2( 15.5, 13.5 )
+[sub_resource type="Animation" id=8]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 0 ]
+}
 
-[sub_resource type="CapsuleShape2D" id=5]
-radius = 5.0
-height = 12.3406
+[sub_resource type="Animation" id=9]
+resource_name = "shoot"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 4, 5, 6, 7 ]
+}
 
 [node name="Player" type="KinematicBody2D" groups=["players"]]
 collision_layer = 3
@@ -72,6 +106,7 @@ script = ExtResource( 1 )
 Bullet = ExtResource( 15 )
 
 [node name="Timers" type="Node2D" parent="."]
+visible = false
 
 [node name="JumpTimer" type="Timer" parent="Timers"]
 wait_time = 0.06
@@ -90,6 +125,7 @@ wait_time = 0.2
 one_shot = true
 
 [node name="PlayerStates" type="Node2D" parent="."]
+visible = false
 script = ExtResource( 2 )
 
 [node name="Air" type="Node2D" parent="PlayerStates"]
@@ -119,21 +155,39 @@ script = ExtResource( 14 )
 tag = "run"
 
 [node name="Waves" parent="." instance=ExtResource( 9 )]
+visible = false
 position = Vector2( 0, 15 )
 z_index = 0
 amount = 20
 preprocess = 1.0
 explosiveness = 0.0
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="TerrainBox" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2( -0.5, 10 )
+z_index = 100
+shape = SubResource( 4 )
+
+[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+visible = false
+z_index = 5
+collision_layer = 1024
+collision_mask = 32768
+
+[node name="HurtBox" type="CollisionShape2D" parent="KinematicBody2D"]
+position = Vector2( 0, 10 )
+z_index = 100
+shape = SubResource( 5 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[node name="Gunslinger" type="Sprite" parent="."]
 texture = ExtResource( 10 )
 hframes = 9
-vframes = 11
-frame = 14
-region_rect = Rect2( -2, 12, 432, 518 )
-region_filter_clip = true
+vframes = 13
+region_rect = Rect2( -117, 169, 2, 0 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Gunslinger"]
 playback_speed = 3.0
 anims/air = SubResource( 1 )
 anims/idle = ExtResource( 12 )
@@ -142,23 +196,19 @@ anims/ladder = SubResource( 3 )
 anims/run = SubResource( 6 )
 anims/walk = ExtResource( 13 )
 
-[node name="TerrainBox" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, 10 )
-z_index = 100
-shape = SubResource( 4 )
+[node name="GunPivot" type="Position2D" parent="."]
+position = Vector2( -2, 9 )
+script = ExtResource( 16 )
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
-z_index = 5
-collision_layer = 1024
-collision_mask = 32768
+[node name="Gun1" type="Sprite" parent="GunPivot"]
+position = Vector2( 12, -1 )
+texture = ExtResource( 11 )
+hframes = 4
+vframes = 5
+region_rect = Rect2( -10.2548, 8.09364, 143.394, 156.502 )
 
-[node name="HurtBox" type="CollisionShape2D" parent="KinematicBody2D"]
-visible = false
-position = Vector2( 0, 10 )
-z_index = 100
-shape = SubResource( 5 )
-
-[node name="Tween" type="Tween" parent="."]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="GunPivot/Gun1"]
+anims/idle = SubResource( 8 )
+anims/shoot = SubResource( 9 )
 
 [connection signal="timeout" from="Timers/PlatformTimer" to="." method="_on_PlatformTimer_timeout"]
