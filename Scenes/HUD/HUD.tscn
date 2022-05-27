@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Scenes/HUD/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/DAGGERSQUARE.otf" type="DynamicFontData" id=2]
+[ext_resource path="res://Scenes/Player/PlayerHealth.tres" type="Resource" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -9,11 +10,23 @@ font_data = ExtResource( 2 )
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource( 1 )
+Health = ExtResource( 3 )
 
 [node name="Label" type="Label" parent="."]
 anchor_right = 1.0
 margin_bottom = 39.0
+rect_pivot_offset = Vector2( 445, 267 )
 custom_fonts/font = SubResource( 1 )
 text = "HUD"
 align = 1
 valign = 1
+
+[node name="Health" type="Label" parent="."]
+anchor_top = 0.91
+anchor_right = 0.08
+anchor_bottom = 1.0
+margin_right = 0.0799942
+text = "HEALTH"
+align = 1
+valign = 1
+uppercase = true
