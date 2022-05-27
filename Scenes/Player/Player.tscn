@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/PlayerFSM.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://Scenes/Player/StateRun.gd" type="Script" id=14]
 [ext_resource path="res://Scenes/Weapon/Gunslinger/RoundProjectile.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Player/GunPivot.gd" type="Script" id=16]
+[ext_resource path="res://Scenes/Player/PlayerHealth.tres" type="Resource" id=17]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 6.5, 13.5 )
@@ -103,6 +104,7 @@ collision_layer = 3
 collision_mask = 0
 script = ExtResource( 1 )
 Bullet = ExtResource( 15 )
+Health = ExtResource( 17 )
 
 [node name="Timers" type="Node2D" parent="."]
 visible = false

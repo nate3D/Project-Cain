@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "PlayerFSM",
 "language": "GDScript",
 "path": "res://Scenes/Player/PlayerFSM.gd"
+}, {
+"base": "Resource",
+"class": "PlayerHealth",
+"language": "GDScript",
+"path": "res://Scenes/Player/PlayerHealth.gd"
 } ]
 _global_script_class_icons={
 "BasePlayerState": "",
 "GitAPI": "",
 "Player": "",
-"PlayerFSM": ""
+"PlayerFSM": "",
+"PlayerHealth": ""
 }
 
 [application]

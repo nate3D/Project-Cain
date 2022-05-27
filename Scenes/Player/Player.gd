@@ -5,6 +5,7 @@ signal hud
 export var gravity : float = 60
 
 export (PackedScene) var Bullet
+export (Resource) var Health
 
 var horizontal : int = 0
 var vertical : int = 0
@@ -39,6 +40,7 @@ onready var gun1_anim : AnimationPlayer = $GunPivot/Gun1/AnimationPlayer
 
 func _ready():
 	state_machine.init(self)
+	Health.reset()
 
 func _physics_process(delta):
 	update_inputs()

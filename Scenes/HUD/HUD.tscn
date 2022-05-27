@@ -4,7 +4,6 @@
 [ext_resource path="res://Fonts/DAGGERSQUARE.otf" type="DynamicFontData" id=2]
 
 [sub_resource type="DynamicFont" id=1]
-
 size = 32
 font_data = ExtResource( 2 )
 
@@ -18,4 +17,3 @@ custom_fonts/font = SubResource( 1 )
 text = "HUD"
 align = 1
 valign = 1
-
