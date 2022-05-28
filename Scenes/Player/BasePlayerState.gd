@@ -13,7 +13,7 @@ func _ready():
 func enter(player: KinematicBody2D):
 	player.play(tag)
 
-func run(player: KinematicBody2D):
+func run(_player: KinematicBody2D):
 	return null
 
 func exit(player: KinematicBody2D):

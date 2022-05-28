@@ -10,8 +10,8 @@ func generate_state_dictionary():
 		if state.tag:
 			states[state.tag] = state
 
-func init(player: KinematicBody2D):
-	self.player = player
+func init(_player: KinematicBody2D):
+	self.player = _player
 	generate_state_dictionary()
 	active_state = states.idle
 	active_state.enter(self.player)

@@ -34,6 +34,8 @@ onready var anim : AnimationPlayer = $Gunslinger/AnimationPlayer
 onready var state_machine: PlayerFSM = $PlayerStates
 onready var tween : Tween = $Tween
 onready var waves : Particles2D = $Waves
+
+# Weapons
 onready var gun_pivot : Position2D = $GunPivot
 onready var gun1 : Sprite = $GunPivot/Gun1
 onready var gun1_anim : AnimationPlayer = $GunPivot/Gun1/AnimationPlayer
@@ -42,7 +44,7 @@ func _ready():
 	state_machine.init(self)
 	Health.reset()
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	update_inputs()
 	update_player()
 	state_machine.run()
@@ -68,15 +70,20 @@ func update_inputs():
 		floor_timer.start()
 		
 func update_player():
+	# Face player
 	sprite.flip_h = flip
+	
+	# Face weapon and layer appropriately
 	gun1.flip_v = flip
+	gun_pivot.z_index = -1 if flip else 0
+	gun_pivot.position.x = 2 if flip else -2
 
 func move():
-	var old = velocity
+	var _old = velocity
 	velocity = move_and_slide(velocity, Vector2.UP, true)
 
-func apply_gravity (gravity:float):
-	velocity += Vector2.DOWN * gravity
+func apply_gravity (_gravity:float):
+	velocity += Vector2.DOWN * _gravity
 
 func play(animation:String):
 	if anim.current_animation == animation:
