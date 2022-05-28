@@ -1,8 +1,8 @@
 [gd_scene load_steps=19 format=2]
 
-[ext_resource path="res://Sprites/Map.tres" type="TileSet" id=1]
-[ext_resource path="res://Sprites/Arcade.png" type="Texture" id=2]
-[ext_resource path="res://Sprites/pipe.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Map.tres" type="TileSet" id=1]
+[ext_resource path="res://Assets/Arcade.png" type="Texture" id=2]
+[ext_resource path="res://Assets/pipe.png" type="Texture" id=3]
 [ext_resource path="res://Scenes/Water/Water.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Scenes/Water/Splash.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Ladder/Ladder.tscn" type="PackedScene" id=6]

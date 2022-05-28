@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=2]
 
-[ext_resource path="res://Sprites/Dark/Gunslinger/Gun/Projectiles 16x16 Sprite Sheet.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Dark/Gunslinger/Gun/Projectiles 16x16 Sprite Sheet.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Weapon/Gunslinger/RoundProjectile.gd" type="Script" id=2]
 
 [node name="RoundProjectile" type="Area2D"]
