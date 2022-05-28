@@ -1,10 +1,14 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Scenes/HUD/HUD.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Player/Player.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Map/DarkMap.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Scenes/Mobs/Ghoul.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/World/DarkWorld.gd" type="Script" id=5]
 
 [node name="DarkWorld" type="Node"]
+script = ExtResource( 5 )
+Ghoul = ExtResource( 4 )
 
 [node name="Player" parent="." instance=ExtResource( 2 )]
 position = Vector2( 342, 456 )
@@ -18,4 +22,12 @@ zoom = Vector2( 0.75, 0.75 )
 
 [node name="DarkMap" parent="." instance=ExtResource( 3 )]
 
+[node name="Ghoul" parent="." instance=ExtResource( 4 )]
+position = Vector2( 554, 589 )
+
+[node name="GhoulSpawn" type="Timer" parent="."]
+wait_time = 1.5
+autostart = true
+
 [connection signal="hud" from="Player" to="HUD" method="set_text"]
+[connection signal="timeout" from="GhoulSpawn" to="." method="_on_GhoulSpawn_timeout"]

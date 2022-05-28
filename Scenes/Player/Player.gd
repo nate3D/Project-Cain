@@ -3,6 +3,7 @@ class_name Player
 signal hud
 
 export var gravity : float = 60
+export var inertia : float = 100
 
 export (PackedScene) var Bullet
 export (Resource) var Health
@@ -47,6 +48,7 @@ func _ready():
 func _physics_process(_delta):
 	update_inputs()
 	update_player()
+	handle_collision()
 	state_machine.run()
 	emit_signal("hud", "%s" % state_machine.active_state.tag)
 
@@ -77,10 +79,18 @@ func update_player():
 	gun1.flip_v = flip
 	gun_pivot.z_index = -1 if flip else 0
 	gun_pivot.position.x = 2 if flip else -2
+	
+func handle_collision():
+	for index in get_slide_count():
+		var collision = get_slide_collision(index)
+		var collider = collision.collider if collision.collider != null else 0
+		if collider.is_in_group("mobs"):
+			collision.collider.apply_central_impulse(-collision.normal * inertia)
+			Health.take_damage(collider.damage)
 
 func move():
 	var _old = velocity
-	velocity = move_and_slide(velocity, Vector2.UP, true)
+	velocity = move_and_slide(velocity, Vector2.UP, true, 4, PI/4, false)
 
 func apply_gravity (_gravity:float):
 	velocity += Vector2.DOWN * _gravity
