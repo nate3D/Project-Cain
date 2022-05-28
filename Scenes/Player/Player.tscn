@@ -18,6 +18,7 @@
 [ext_resource path="res://Scenes/Player/GunPivot.gd" type="Script" id=16]
 [ext_resource path="res://Scenes/Player/PlayerHealth.tres" type="Resource" id=17]
 [ext_resource path="res://Animations/Player/walk.tres" type="Animation" id=18]
+[ext_resource path="res://Animations/Player/idle.tres" type="Animation" id=19]
 
 [sub_resource type="RectangleShape2D" id=4]
 extents = Vector2( 6.5, 13.5 )
@@ -30,22 +31,6 @@ height = 12.3406
 resource_name = "air"
 length = 0.1
 loop = true
-
-[sub_resource type="Animation" id=10]
-resource_name = "idle"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/path = NodePath(".:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
-"update": 1,
-"values": [ 0 ]
-}
 
 [sub_resource type="Animation" id=3]
 length = 1.8
@@ -174,13 +159,12 @@ shape = SubResource( 5 )
 texture = ExtResource( 10 )
 hframes = 9
 vframes = 13
-frame = 54
 region_rect = Rect2( -117, 169, 2, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Gunslinger"]
 playback_speed = 3.0
 anims/air = SubResource( 1 )
-anims/idle = SubResource( 10 )
+anims/idle = ExtResource( 19 )
 anims/jump = ExtResource( 13 )
 anims/ladder = SubResource( 3 )
 anims/run = ExtResource( 12 )
