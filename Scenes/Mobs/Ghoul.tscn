@@ -1,7 +1,8 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://Assets/Dark/Mobs/Ghoul/Ghoul Sprite Sheet 62 x 33.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Mobs/Ghoul.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Mobs/Health.tres" type="Resource" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 atlas = ExtResource( 1 )
@@ -47,34 +48,6 @@ region = Rect2( 310, 132, 62, 33 )
 atlas = ExtResource( 1 )
 region = Rect2( 372, 132, 62, 33 )
 
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 66, 62, 33 )
-
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 1 )
-region = Rect2( 62, 66, 62, 33 )
-
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 1 )
-region = Rect2( 124, 66, 62, 33 )
-
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 1 )
-region = Rect2( 186, 66, 62, 33 )
-
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 1 )
-region = Rect2( 248, 66, 62, 33 )
-
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 1 )
-region = Rect2( 310, 66, 62, 33 )
-
-[sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 1 )
-region = Rect2( 372, 66, 62, 33 )
-
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
 region = Rect2( 0, 33, 62, 33 )
@@ -111,6 +84,34 @@ region = Rect2( 434, 33, 62, 33 )
 atlas = ExtResource( 1 )
 region = Rect2( 496, 33, 62, 33 )
 
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 66, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 1 )
+region = Rect2( 62, 66, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=17]
+atlas = ExtResource( 1 )
+region = Rect2( 124, 66, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=18]
+atlas = ExtResource( 1 )
+region = Rect2( 186, 66, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 1 )
+region = Rect2( 248, 66, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 1 )
+region = Rect2( 310, 66, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 1 )
+region = Rect2( 372, 66, 62, 33 )
+
 [sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
@@ -123,14 +124,14 @@ animations = [ {
 "name": "dying",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
-"loop": true,
-"name": "attack",
-"speed": 10.0
-}, {
 "frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,
 "name": "walk",
+"speed": 10.0
+}, {
+"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"loop": false,
+"name": "attack",
 "speed": 10.0
 } ]
 
@@ -142,10 +143,13 @@ height = 14.0
 radius = 176.102
 
 [sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 25, 11 )
+extents = Vector2( 22, 11 )
 
 [node name="Ghoul" type="KinematicBody2D" groups=["mobs"]]
+collision_layer = 2
+collision_mask = 5
 script = ExtResource( 2 )
+Health = ExtResource( 3 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
@@ -153,7 +157,7 @@ animation = "idle"
 frame = 3
 playing = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Hitbox" type="CollisionShape2D" parent="."]
 visible = false
 position = Vector2( 0, 4 )
 shape = SubResource( 22 )
@@ -176,6 +180,12 @@ collision_layer = 2
 position = Vector2( 0, 1 )
 shape = SubResource( 31 )
 
+[node name="RayCast2D" type="RayCast2D" parent="."]
+rotation = -1.5708
+enabled = true
+cast_to = Vector2( 0, 19 )
+
+[connection signal="frame_changed" from="AnimatedSprite" to="." method="_on_AnimatedSprite_frame_changed"]
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="body_entered" from="ChaseArea" to="." method="_on_ChaseArea_body_entered"]
 [connection signal="body_exited" from="ChaseArea" to="." method="_on_ChaseArea_body_exited"]

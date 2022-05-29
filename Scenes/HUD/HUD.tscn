@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Scenes/HUD/HUD.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/DAGGERSQUARE.otf" type="DynamicFontData" id=2]
-[ext_resource path="res://Scenes/Player/PlayerHealth.tres" type="Resource" id=3]
+[ext_resource path="res://Scenes/Player/Health.tres" type="Resource" id=3]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32

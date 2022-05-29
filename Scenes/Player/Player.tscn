@@ -16,7 +16,7 @@
 [ext_resource path="res://Scenes/Player/StateRun.gd" type="Script" id=14]
 [ext_resource path="res://Scenes/Weapon/Gunslinger/RoundProjectile.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Player/GunPivot.gd" type="Script" id=16]
-[ext_resource path="res://Scenes/Player/PlayerHealth.tres" type="Resource" id=17]
+[ext_resource path="res://Scenes/Player/Health.tres" type="Resource" id=17]
 [ext_resource path="res://Animations/Player/walk.tres" type="Animation" id=18]
 [ext_resource path="res://Animations/Player/idle.tres" type="Animation" id=19]
 
@@ -91,10 +91,6 @@ one_shot = true
 
 [node name="PlatformTimer" type="Timer" parent="Timers"]
 wait_time = 0.2
-one_shot = true
-
-[node name="ShootTimer" type="Timer" parent="Timers"]
-wait_time = 0.4
 one_shot = true
 
 [node name="PlayerStates" type="Node2D" parent="."]
