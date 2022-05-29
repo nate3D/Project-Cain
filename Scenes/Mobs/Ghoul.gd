@@ -7,7 +7,8 @@ export var damage = 5
 enum State {
 	IDLE,
 	WALKING,
-	DYING
+	DYING,
+	ATTACKING
 }
 
 var speed : int = 100
@@ -33,12 +34,14 @@ func _physics_process(delta):
 	elif state == State.WALKING:
 		new_anim = "walk"
 		
-		velocity = Vector2.ZERO
 		if player:
 			velocity = Vector2(position.direction_to(player.position).x * speed, 0)
 		anim_sprite.flip_h = velocity.x < 0
 		velocity += Vector2.DOWN * gravity
 		velocity = move_and_slide(velocity, Vector2.UP, true, 4, PI/4, false)
+		
+	elif state == State.ATTACKING:
+		new_anim = "attack"
 		
 	if anim != new_anim:
 		anim = new_anim
@@ -62,5 +65,13 @@ func _die():
 func _bullet_collider(contact_collider, state, dp):
 	state = State.DYING
 	
-	state.set_angular_velocity(sign(dp.x) * 33.0)
 	contact_collider.disable()
+
+
+func _on_AttackArea_body_entered(body):
+	if body is Player:
+		state = State.ATTACKING
+
+func _on_AttackArea_body_exited(body):
+	if body is Player:
+		state = State.WALKING

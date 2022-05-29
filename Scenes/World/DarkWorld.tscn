@@ -23,7 +23,8 @@ zoom = Vector2( 0.75, 0.75 )
 [node name="DarkMap" parent="." instance=ExtResource( 3 )]
 
 [node name="GhoulSpawn" type="Timer" parent="."]
-wait_time = 1.5
+wait_time = 5.0
+autostart = true
 
 [node name="Ghoul" parent="." instance=ExtResource( 4 )]
 position = Vector2( 806, 592 )
