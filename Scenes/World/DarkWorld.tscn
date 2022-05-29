@@ -22,12 +22,11 @@ zoom = Vector2( 0.75, 0.75 )
 
 [node name="DarkMap" parent="." instance=ExtResource( 3 )]
 
-[node name="Ghoul" parent="." instance=ExtResource( 4 )]
-position = Vector2( 554, 589 )
-
 [node name="GhoulSpawn" type="Timer" parent="."]
 wait_time = 1.5
-autostart = true
+
+[node name="Ghoul" parent="." instance=ExtResource( 4 )]
+position = Vector2( 806, 592 )
 
 [connection signal="hud" from="Player" to="HUD" method="set_text"]
 [connection signal="timeout" from="GhoulSpawn" to="." method="_on_GhoulSpawn_timeout"]

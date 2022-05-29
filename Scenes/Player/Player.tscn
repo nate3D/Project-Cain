@@ -141,14 +141,13 @@ visible = false
 position = Vector2( -0.5, 10 )
 z_index = 100
 shape = SubResource( 4 )
+one_way_collision = true
 
-[node name="KinematicBody2D" type="KinematicBody2D" parent="."]
+[node name="HurtBox" type="Area2D" parent="."]
 visible = false
 z_index = 5
-collision_layer = 1024
-collision_mask = 32768
 
-[node name="HurtBox" type="CollisionShape2D" parent="KinematicBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( 0, 10 )
 z_index = 100
 shape = SubResource( 5 )
@@ -186,3 +185,4 @@ anims/idle = SubResource( 8 )
 anims/shoot = SubResource( 9 )
 
 [connection signal="timeout" from="Timers/PlatformTimer" to="." method="_on_PlatformTimer_timeout"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_HurtBox_body_entered"]

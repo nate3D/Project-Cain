@@ -1,4 +1,5 @@
 extends Area2D
+class_name RoundProjectile
 
 var speed = 1000
 var direction = Vector2()
@@ -15,8 +16,6 @@ func _physics_process(delta):
 	position += direction * speed * delta
 
 func _on_RoundProjectile_body_entered(body):
-	if body.is_in_group("players"):
+	if body is Player:
 		return
-	if body.is_in_group("mobs"):
-		body.queue_free()
 	queue_free()

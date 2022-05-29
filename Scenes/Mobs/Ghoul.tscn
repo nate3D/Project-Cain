@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=33 format=2]
 
 [ext_resource path="res://Assets/Dark/Mobs/Ghoul/Ghoul Sprite Sheet 62 x 33.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Mobs/Ghoul.gd" type="Script" id=2]
@@ -46,6 +46,34 @@ region = Rect2( 310, 66, 62, 33 )
 [sub_resource type="AtlasTexture" id=21]
 atlas = ExtResource( 1 )
 region = Rect2( 372, 66, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 132, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 1 )
+region = Rect2( 62, 132, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 1 )
+region = Rect2( 124, 132, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=27]
+atlas = ExtResource( 1 )
+region = Rect2( 186, 132, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=28]
+atlas = ExtResource( 1 )
+region = Rect2( 248, 132, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=29]
+atlas = ExtResource( 1 )
+region = Rect2( 310, 132, 62, 33 )
+
+[sub_resource type="AtlasTexture" id=30]
+atlas = ExtResource( 1 )
+region = Rect2( 372, 132, 62, 33 )
 
 [sub_resource type="AtlasTexture" id=6]
 atlas = ExtResource( 1 )
@@ -95,6 +123,11 @@ animations = [ {
 "name": "attack",
 "speed": 10.0
 }, {
+"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ) ],
+"loop": true,
+"name": "dying",
+"speed": 10.0
+}, {
 "frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
 "loop": true,
 "name": "walk",
@@ -105,13 +138,16 @@ animations = [ {
 radius = 3.0
 height = 14.0
 
-[node name="Ghoul" type="RigidBody2D" groups=["mobs"]]
+[sub_resource type="CircleShape2D" id=23]
+radius = 176.102
+
+[node name="Ghoul" type="KinematicBody2D" groups=["mobs"]]
 script = ExtResource( 2 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 5 )
-animation = "idle"
-frame = 3
+animation = "attack"
+frame = 6
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -124,4 +160,12 @@ visible = false
 position = Vector2( 0.5, 4 )
 scale = Vector2( 0.45, 1.2 )
 
+[node name="ChaseArea" type="Area2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseArea"]
+shape = SubResource( 23 )
+
 [connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="body_entered" from="ChaseArea" to="." method="_on_ChaseArea_body_entered"]
+[connection signal="body_exited" from="ChaseArea" to="." method="_on_ChaseArea_body_exited"]

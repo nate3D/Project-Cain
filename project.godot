@@ -33,13 +33,19 @@ _global_script_classes=[ {
 "class": "PlayerHealth",
 "language": "GDScript",
 "path": "res://Scenes/Player/PlayerHealth.gd"
+}, {
+"base": "Area2D",
+"class": "RoundProjectile",
+"language": "GDScript",
+"path": "res://Scenes/Weapon/Gunslinger/RoundProjectile.gd"
 } ]
 _global_script_class_icons={
 "BasePlayerState": "",
 "GitAPI": "",
 "Player": "",
 "PlayerFSM": "",
-"PlayerHealth": ""
+"PlayerHealth": "",
+"RoundProjectile": ""
 }
 
 [application]
