@@ -28,5 +28,8 @@ wait_time = 5.0
 [node name="Ghoul" parent="." instance=ExtResource( 4 )]
 position = Vector2( 806, 592 )
 
+[node name="Ghoul2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 512, 591 )
+
 [connection signal="hud" from="Player" to="HUD" method="set_text"]
 [connection signal="timeout" from="GhoulSpawn" to="." method="_on_GhoulSpawn_timeout"]

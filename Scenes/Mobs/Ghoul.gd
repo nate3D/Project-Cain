@@ -3,7 +3,7 @@ extends KinematicBody2D
 onready var anim_sprite : AnimatedSprite = $AnimatedSprite
 onready var raycast : RayCast2D = $RayCast2D
 
-export (Resource) var Health setget , _get_health
+export (Resource) var Health
 var attack_damage : int = 5
 var attack_cooldown_time : int = 1500
 var next_attack_time : int = 0
@@ -26,6 +26,7 @@ var state = State.IDLE
 
 func _ready():
 	Health.connect("health_zero", self, "_die")
+	Health.reset()
 	anim_sprite.playing = true
 	anim_sprite.play('idle')
 
@@ -34,8 +35,6 @@ func _physics_process(delta):
 	
 	if state == State.IDLE:
 		new_anim = "idle"
-	elif state == State.DYING:
-		new_anim = "dying"
 	elif state == State.WALKING:
 		new_anim = "walk"
 		
@@ -95,6 +94,3 @@ func _on_AnimatedSprite_frame_changed():
 		if target and target is Player and player._get_health() > 0:
 			player.hit(attack_damage)
 			yield(anim_sprite, "animation_finished")
-
-func _get_health():
-	return Health._get_current_health()

@@ -3,6 +3,7 @@
 [ext_resource path="res://Scenes/Player/Health.gd" type="Script" id=1]
 
 [resource]
+resource_local_to_scene = true
 script = ExtResource( 1 )
-max_value = 10
+max_value = 20
 current_value = 0
