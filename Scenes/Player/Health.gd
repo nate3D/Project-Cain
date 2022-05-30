@@ -1,7 +1,7 @@
 extends Resource
 class_name Health
 
-signal health_changed
+signal health_changed(current_value)
 signal health_zero
 
 export (int) var max_value setget ,_get_max_health
@@ -15,7 +15,7 @@ func take_damage(amount):
 	emit_signal("health_changed", current_value)
 	if current_value <= 0:
 		current_value = 0
-		emit_signal("health_zero", current_value)
+		emit_signal("health_zero")
 	
 func heal(amount):
 	current_value = min(max_value, current_value + amount)

@@ -5,3 +5,4 @@
 [resource]
 script = ExtResource( 1 )
 max_value = 100
+current_value = 0

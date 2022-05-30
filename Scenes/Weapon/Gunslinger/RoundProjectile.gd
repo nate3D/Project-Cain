@@ -3,9 +3,7 @@ class_name RoundProjectile
 
 var speed = 1000
 var direction = Vector2()
-
-func _init():
-	z_index = 2
+var attack_damage = 5
 
 func shoot(aim_position, gun_position):
 	global_position = gun_position
@@ -18,4 +16,7 @@ func _physics_process(delta):
 func _on_RoundProjectile_body_entered(body):
 	if body is Player:
 		return
+		
+	if body.is_in_group('mobs'):
+		body.hit(attack_damage)
 	queue_free()
