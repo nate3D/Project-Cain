@@ -1,5 +1,6 @@
 extends KinematicBody2D
 class_name Player
+
 signal hud
 
 export var gravity : float = 60
@@ -54,6 +55,10 @@ func _physics_process(_delta):
 	emit_signal("hud", "%s" % state_machine.active_state.tag)
 
 func update_inputs():
+	if Input.is_action_pressed("ui_cancel"):
+		get_tree().paused = !get_tree().paused
+		Global.goto_scene(Global.menu_scene)
+
 	horizontal = (
 		int(Input.is_action_pressed("ui_right"))
 		- int(Input.is_action_pressed("ui_left"))

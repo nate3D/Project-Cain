@@ -60,6 +60,10 @@ config/name="Project Cain"
 run/main_scene="res://Scenes/Menu/Menu.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+Global="*res://Global.gd"
+
 [debug]
 
 settings/fps/force_fps=60
