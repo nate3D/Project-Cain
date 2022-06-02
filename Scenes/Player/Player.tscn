@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/PlayerFSM.gd" type="Script" id=2]
@@ -27,6 +27,21 @@ extents = Vector2( 6.5, 13.5 )
 radius = 5.0
 height = 12.3406
 
+[sub_resource type="Animation" id=10]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 46 ]
+}
+
 [sub_resource type="Animation" id=1]
 resource_name = "air"
 length = 0.1
@@ -36,6 +51,24 @@ loop = true
 length = 1.8
 loop = true
 step = 0.05
+
+[sub_resource type="Animation" id=11]
+resource_name = "wall_hang"
+length = 1.2
+loop = true
+step = 0.2
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.00178134, 0.2, 0.4, 0.6, 0.8, 1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 45, 46, 47, 48, 49, 50 ]
+}
 
 [sub_resource type="Animation" id=8]
 resource_name = "idle"
@@ -153,16 +186,19 @@ shape = SubResource( 5 )
 texture = ExtResource( 10 )
 hframes = 9
 vframes = 13
+frame = 46
 region_rect = Rect2( -117, 169, 2, 0 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Gunslinger"]
 playback_speed = 3.0
+anims/RESET = SubResource( 10 )
 anims/air = SubResource( 1 )
 anims/idle = ExtResource( 19 )
 anims/jump = ExtResource( 13 )
 anims/ladder = SubResource( 3 )
 anims/run = ExtResource( 12 )
 anims/walk = ExtResource( 18 )
+anims/wall_hang = SubResource( 11 )
 
 [node name="GunPivot" type="Position2D" parent="."]
 position = Vector2( -2, 9 )

@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://Scenes/Player/Health.gd"
 }, {
+"base": "Control",
+"class": "Menu",
+"language": "GDScript",
+"path": "res://Scenes/Menu/Menu.gd"
+}, {
 "base": "KinematicBody2D",
 "class": "Player",
 "language": "GDScript",
@@ -43,6 +48,7 @@ _global_script_class_icons={
 "BasePlayerState": "",
 "GitAPI": "",
 "Health": "",
+"Menu": "",
 "Player": "",
 "PlayerFSM": "",
 "RoundProjectile": ""
@@ -51,7 +57,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Project Cain"
-run/main_scene="res://Scenes/World/DarkWorld.tscn"
+run/main_scene="res://Scenes/Menu/Menu.tscn"
 config/icon="res://icon.png"
 
 [debug]
