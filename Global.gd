@@ -1,45 +1,19 @@
 extends Node
 
+var GameStateManager : Resource = preload("res://Global/GameStateManager.gd")
+
 export var menu_scene = "res://Scenes/Menu/Menu.tscn"
-export var first_scene = "res://Scenes/World/DarkWorld.tscn"
+export var main_scene = "res://Scenes/World/DarkWorld.tscn"
 
-enum GameState {NEW, IN_PROGRESS, PAUSED}
-
-var current_scene = null
-var current_state = GameState.NEW
+var _gameStateManager = null
 
 func _ready():
-	var root = get_tree().get_root()
-	current_scene = root.get_child(root.get_child_count() - 1)
-	current_state = GameState.NEW
+	Input.set_mouse_mode(Input.MOUSE_MODE_HIDDEN)
+	get_tree().set_auto_accept_quit(false)	# Must be false to allow pause menu to work on Android
+	get_tree().set_quit_on_go_back(false)	# Must be false to allow pause menu to work on Android
 	
-func pause(state):
-	match state:
-		GameState.PAUSED:
-			get_tree().paused = false
-			current_state = GameState.IN_PROGRESS
-		GameState.IN_PROGRESS:
-			get_tree().paused = true
-			current_state = GameState.PAUSED
-			
-func quit():
-	get_tree().quit()
+	_gameStateManager = GameStateManager.new()
+	self.add_child(_gameStateManager)
 	
-func goto_scene(path):
-	call_deferred("_deferred_goto_scene", path)
-
-func _deferred_goto_scene(path):
-	# It is now safe to remove the current scene
-	current_scene.free()
-
-	# Load the new scene.
-	var s = ResourceLoader.load(path)
-
-	# Instance the new scene.
-	current_scene = s.instance()
-
-	# Add it to the active scene, as child of root.
-	get_tree().get_root().add_child(current_scene)
-
-	# Optionally, to make it compatible with the SceneTree.change_scene() API.
-	get_tree().set_current_scene(current_scene)
+	_gameStateManager.Initialise(main_scene, menu_scene)
+	

@@ -63,6 +63,7 @@ config/icon="res://icon.png"
 [autoload]
 
 Global="*res://Global.gd"
+GameStateManager="*res://Global/GameStateManager.gd"
 
 [debug]
 

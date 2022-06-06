@@ -56,8 +56,10 @@ func _physics_process(_delta):
 
 func update_inputs():
 	if Input.is_action_pressed("ui_cancel"):
-		get_tree().paused = !get_tree().paused
-		Global.goto_scene(Global.menu_scene)
+		if get_tree().paused == false:
+			Global.change_state(Global.GameState.PAUSED)
+		else:
+			Global.change_state(Global.GameState.IN_PROGRESS)
 
 	horizontal = (
 		int(Input.is_action_pressed("ui_right"))
