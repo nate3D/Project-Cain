@@ -12,6 +12,7 @@ var player
 func _ready():
 	screen_size = get_viewport().get_visible_rect().size
 	player = Player.instance()
+	Global.player_instance = player
 	add_child(player)
 	player.set_owner(self)
 	randomize()
