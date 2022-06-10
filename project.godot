@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "Menu",
 "language": "GDScript",
-"path": "res://Scenes/Menu/Menu.gd"
+"path": "res://Scenes/Menu/PauseMenu.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "Player",
@@ -57,13 +57,8 @@ _global_script_class_icons={
 [application]
 
 config/name="Project Cain"
-run/main_scene="res://Scenes/Menu/Menu.tscn"
+run/main_scene="res://Scenes/Game.tscn"
 config/icon="res://icon.png"
-
-[autoload]
-
-Global="*res://Global.gd"
-GameStateManager="*res://Global/GameStateManager.gd"
 
 [debug]
 

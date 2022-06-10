@@ -2,6 +2,7 @@ extends KinematicBody2D
 class_name Player
 
 signal hud
+signal PauseGame
 
 export var gravity : float = 60
 
@@ -56,10 +57,7 @@ func _physics_process(_delta):
 
 func update_inputs():
 	if Input.is_action_pressed("ui_cancel"):
-		if get_tree().paused == false:
-			Global.change_state(Global.GameState.PAUSED)
-		else:
-			Global.change_state(Global.GameState.IN_PROGRESS)
+		emit_signal("PauseGame")
 
 	horizontal = (
 		int(Input.is_action_pressed("ui_right"))

@@ -3,6 +3,7 @@ extends Node
 export(PackedScene) var Ghoul
 
 export var screen_size : Vector2
+signal SetActiveScene(args)
 
 var _rand : RandomNumberGenerator = RandomNumberGenerator.new()
 

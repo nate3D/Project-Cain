@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://Scenes/Menu/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Scenes/Menu/PauseMenu.gd" type="Script" id=1]
 
 [node name="Menu" type="Control"]
 pause_mode = 2

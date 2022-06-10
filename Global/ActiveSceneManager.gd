@@ -1,7 +1,5 @@
 extends "res://Global/GameStateNodeBase.gd"
 
-signal SetActiveScene(args)
-
 var _homeSceneInstance;
 var _activeSceneInstance
 
@@ -24,7 +22,8 @@ func SetActiveScene(args):
 	RemoveActiveScene()
 
 	_activeSceneInstance = nodeInstance
-	_activeSceneInstance.connect("SetActiveScene", self, "SetActiveScene") 
+	_activeSceneInstance.connect("SetActiveScene", self, "SetActiveScene")
+
 	self.add_child(nodeInstance)
 
 func RemoveActiveScene():
@@ -36,3 +35,7 @@ func RemoveActiveScene():
 
 func Home():
 	SetActiveScene({ sceneInstance = _homeSceneInstance, sceneName = "Home"})
+	
+func Pause():
+	var gameStateManager = self.get_parent()
+	self.connect("ResumeSelected", gameStateManager, "ExecuteGameCommand", [ gameCommand.ContinueGame ])

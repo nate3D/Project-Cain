@@ -1,22 +1,10 @@
 extends "res://Global/GameStateNodeBase.gd"
 
-var ActiveSceneManager : Resource = preload("res://Global/ActiveSceneManager.gd")
-var PauseSceneManager : Resource = preload("res://Global/PauseSceneManager.gd")
-
-var _activeSceneManager = null
-var _pauseSceneManager = null
-
-var _pauseSceneInstance;
-
 var _currentGameState = gameState.Initialising
 
 func Initialise(homeScenePath, pauseScenePath):
-	_activeSceneManager = ActiveSceneManager.new()
-	self.add_child(_activeSceneManager)
-	_pauseSceneManager = PauseSceneManager.new()
-	self.add_child(_pauseSceneManager)
-	_activeSceneManager.Initialise(homeScenePath)
-	_pauseSceneManager.Initialise(pauseScenePath)
+	$ActiveSceneManager.Initialise(homeScenePath)
+	$PauseSceneManager.Initialise(pauseScenePath)
 	SetGameState(gameState.PlayingScene)
 	print([["Pause",gameCommand.PauseGame], ["Home",gameCommand.GoHome], ["Quit",gameCommand.QuitApp], ["Continue",gameCommand.ContinueGame]])
 
@@ -25,14 +13,14 @@ func ExecuteGameCommand(command):
 	match command:
 		gameCommand.GoHome:
 			SetGameState(gameState.PlayingScene)
-			_activeSceneManager.Home();
-			_pauseSceneManager.Hide()
+			$ActiveSceneManager.Home()
+			$PauseSceneManager.Hide()
 		gameCommand.PauseGame:
 			SetGameState(gameState.GamePaused)
-			_pauseSceneManager.Show()
+			$PauseSceneManager.Show()
 		gameCommand.ContinueGame:
 			SetGameState(gameState.PlayingScene)
-			_pauseSceneManager.Hide()
+			$PauseSceneManager.Hide()
 		gameCommand.QuitApp:
 			get_tree().quit()
 

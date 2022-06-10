@@ -13,6 +13,6 @@ func _on_player_health_changed(value):
 	health_label.text = str(float(value) / Health.max_value * 100)
 
 func set_text(text):
-	$Label.text	= str(text)
+	$Label.text = str(text)
 
 
