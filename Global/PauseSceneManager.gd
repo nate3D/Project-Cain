@@ -1,6 +1,7 @@
 extends "res://Global/GameStateNodeBase.gd"
 
 var _pauseSceneInstance
+onready var _pauseMenuLayer : CanvasLayer = $PauseMenuLayer
 
 func Initialise(pauseScenePath):
 	var gameStateManager = self.get_parent()
@@ -11,7 +12,7 @@ func Initialise(pauseScenePath):
 	_pauseSceneInstance.connect("ResumeSelected", gameStateManager, "ExecuteGameCommand", [ gameCommand.ContinueGame ])
 	_pauseSceneInstance.hide()
 	
-	self.add_child(_pauseSceneInstance)
+	_pauseMenuLayer.add_child(_pauseSceneInstance)
 
 func Hide():
 	_pauseSceneInstance.hide()

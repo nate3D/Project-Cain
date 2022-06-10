@@ -211,7 +211,7 @@ region_rect = Rect2( -10.2548, 8.09364, 143.394, 156.502 )
 anims/idle = SubResource( 8 )
 anims/shoot = SubResource( 9 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="PlayerCamera" type="Camera2D" parent="."]
 visible = false
 current = true
 zoom = Vector2( 0.75, 0.75 )
