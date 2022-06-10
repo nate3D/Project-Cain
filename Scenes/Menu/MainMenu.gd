@@ -1,14 +1,18 @@
 extends Control
-class_name PauseMenu
+class_name MainMenu
 
 enum gameCommand { PauseGame, GoHome, QuitApp, ContinueGame }
 
-signal SettingsSelected
-signal QuitSelected
-signal StartSelected
-signal ResumeSelected
+signal SetActiveScene(args)
 
 var options = "res://Scenes/Menu/Options.tscn"
+
+var scenes = [
+		{
+			sceneName = "DarkWorld",
+			scenePath = "res://Scenes/World/DarkWorld.tscn"
+		}
+	]
 
 onready var buttonContainer = $VBoxContainer
 
@@ -19,10 +23,9 @@ func _ready():
 func OnButtonPressed(name):
 	print(str("Clicked ", name))
 	match name:
-		"ResumeButton":
-			emit_signal("ResumeSelected")
 		"StartButton":
-			emit_signal("StartSelected")
+			print(scenes[0])
+			emit_signal("SetActiveScene",  scenes[0])
 		"SettingsButton":
 			emit_signal("SettingsSelected")
 		"QuitButton":

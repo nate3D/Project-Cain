@@ -1,7 +1,7 @@
 extends Node
 
 export var menu_scene = "res://Scenes/Menu/PauseMenu.tscn"
-export var main_scene = "res://Scenes/World/DarkWorld.tscn"
+export var main_scene = "res://Scenes/Menu/MainMenu.tscn"
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)

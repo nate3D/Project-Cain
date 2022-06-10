@@ -25,7 +25,12 @@ _global_script_classes=[ {
 "path": "res://Scenes/Player/Health.gd"
 }, {
 "base": "Control",
-"class": "Menu",
+"class": "MainMenu",
+"language": "GDScript",
+"path": "res://Scenes/Menu/MainMenu.gd"
+}, {
+"base": "Control",
+"class": "PauseMenu",
 "language": "GDScript",
 "path": "res://Scenes/Menu/PauseMenu.gd"
 }, {
@@ -48,7 +53,8 @@ _global_script_class_icons={
 "BasePlayerState": "",
 "GitAPI": "",
 "Health": "",
-"Menu": "",
+"MainMenu": "",
+"PauseMenu": "",
 "Player": "",
 "PlayerFSM": "",
 "RoundProjectile": ""
