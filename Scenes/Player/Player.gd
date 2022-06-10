@@ -5,8 +5,8 @@ signal hud
 
 export var gravity : float = 60
 
-export (PackedScene) var Bullet
-export (Resource) var Health setget , _get_health
+var Bullet : PackedScene = load("res://Scenes/Weapon/Gunslinger/RoundProjectile.tscn")
+var Health2 = load("res://Scenes/Player/Health.tres")
 
 var horizontal : int = 0
 var vertical : int = 0
@@ -46,18 +46,18 @@ var attack_damage = 30
 
 func _ready():
 	state_machine.init(self)
-	Health.reset()
+	Health2.reset()
 
 func _physics_process(_delta):
 	update_inputs()
 	update_player()
 	state_machine.run()
-	emit_signal("hud", "%s" % state_machine.active_state.tag)
+	Global.emit_signal("Hud", "%s" % state_machine.active_state.tag)
 
 func update_inputs():
 	if Input.is_action_pressed("ui_cancel"):
-		get_tree().paused = !get_tree().paused
-		Global.goto_scene(Global.menu_scene)
+		print("ESC Pressed")
+		Global.emit_signal("PauseGame")
 
 	horizontal = (
 		int(Input.is_action_pressed("ui_right"))
@@ -118,7 +118,7 @@ func shoot():
 		gun1_anim.play('idle')
 	
 func hit(damage):
-	Health.take_damage(damage)
+	Health2.take_damage(damage)
 
 ###########################################################
 # Setget
@@ -146,7 +146,7 @@ func _get_jumping():
 	return jumping
 	
 func _get_health():
-	return Health._get_current_health()
+	return Health2._get_current_health()
 ###########################################################
 
 func _on_PlatformTimer_timeout():
@@ -154,4 +154,4 @@ func _on_PlatformTimer_timeout():
 
 func _on_HurtBox_body_entered(body):
 	if body.is_in_group('mobs'):
-		Health.take_damage(body.attack_damage)
+		Health2.take_damage(body.attack_damage)
