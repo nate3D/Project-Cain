@@ -8,11 +8,10 @@ func _ready():
 	if Health:
 		Health.connect("health_changed", self, "_on_player_health_changed")
 		health_label.text = str(Health.max_value)
+	Global.connect("Hud", self, "set_text")
 		
 func _on_player_health_changed(value):
 	health_label.text = str(float(value) / Health.max_value * 100)
 
 func set_text(text):
 	$Label.text = str(text)
-
-

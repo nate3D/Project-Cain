@@ -5,10 +5,15 @@ export(PackedScene) var Ghoul
 export var screen_size : Vector2
 signal SetActiveScene(args)
 
+var Player : PackedScene = load("res://Scenes/Player/Player.tscn")
 var _rand : RandomNumberGenerator = RandomNumberGenerator.new()
+var player
 
 func _ready():
 	screen_size = get_viewport().get_visible_rect().size
+	player = Player.instance()
+	add_child(player)
+	player.set_owner(self)
 	randomize()
 
 func _on_GhoulSpawn_timeout():

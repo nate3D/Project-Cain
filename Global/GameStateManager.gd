@@ -6,6 +6,7 @@ func Initialise(homeScenePath, pauseScenePath):
 	$ActiveSceneManager.Initialise(homeScenePath)
 	$PauseSceneManager.Initialise(pauseScenePath)
 	SetGameState(gameState.PlayingScene)
+	Global.connect("PauseGame", self, "ExecuteGameCommand", [ gameCommand.PauseGame ])
 	print([["Pause",gameCommand.PauseGame], ["Home",gameCommand.GoHome], ["Quit",gameCommand.QuitApp], ["Continue",gameCommand.ContinueGame]])
 
 func ExecuteGameCommand(command):

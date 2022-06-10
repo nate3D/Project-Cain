@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Scenes/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Scenes/Player/PlayerFSM.gd" type="Script" id=2]
@@ -14,9 +14,7 @@
 [ext_resource path="res://Animations/Player/run.tres" type="Animation" id=12]
 [ext_resource path="res://Animations/Player/jump.tres" type="Animation" id=13]
 [ext_resource path="res://Scenes/Player/StateRun.gd" type="Script" id=14]
-[ext_resource path="res://Scenes/Weapon/Gunslinger/RoundProjectile.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Player/GunPivot.gd" type="Script" id=16]
-[ext_resource path="res://Scenes/Player/Health.tres" type="Resource" id=17]
 [ext_resource path="res://Animations/Player/walk.tres" type="Animation" id=18]
 [ext_resource path="res://Animations/Player/idle.tres" type="Animation" id=19]
 
@@ -104,8 +102,6 @@ tracks/0/keys = {
 [node name="Player" type="KinematicBody2D" groups=["players"]]
 collision_mask = 6
 script = ExtResource( 1 )
-Bullet = ExtResource( 15 )
-Health = ExtResource( 17 )
 
 [node name="Timers" type="Node2D" parent="."]
 visible = false
@@ -214,6 +210,11 @@ region_rect = Rect2( -10.2548, 8.09364, 143.394, 156.502 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="GunPivot/Gun1"]
 anims/idle = SubResource( 8 )
 anims/shoot = SubResource( 9 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+visible = false
+current = true
+zoom = Vector2( 0.75, 0.75 )
 
 [connection signal="timeout" from="Timers/PlatformTimer" to="." method="_on_PlatformTimer_timeout"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_HurtBox_body_entered"]

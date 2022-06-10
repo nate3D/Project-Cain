@@ -35,7 +35,3 @@ func RemoveActiveScene():
 
 func Home():
 	SetActiveScene({ sceneInstance = _homeSceneInstance, sceneName = "Home"})
-	
-func Pause():
-	var gameStateManager = self.get_parent()
-	self.connect("ResumeSelected", gameStateManager, "ExecuteGameCommand", [ gameCommand.ContinueGame ])

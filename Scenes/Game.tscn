@@ -6,7 +6,6 @@
 [ext_resource path="res://Global/PauseSceneManager.gd" type="Script" id=4]
 
 [node name="Game" type="Node"]
-pause_mode = 2
 script = ExtResource( 1 )
 
 [node name="GameStateManager" type="Node" parent="."]
