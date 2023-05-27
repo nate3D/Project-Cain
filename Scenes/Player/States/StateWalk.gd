@@ -1,8 +1,9 @@
 extends BasePlayerState
 
-export var walk_speed : float = 300
+@export 
+var walk_speed : float = 300
 
-func run(player: KinematicBody2D):
+func run(player: CharacterBody2D):
 	player.play("walk")
 	if player.vertical > 0:
 		player.collision_layer = 1

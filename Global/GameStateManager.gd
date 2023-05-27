@@ -6,7 +6,7 @@ func Initialise(homeScenePath, pauseScenePath):
 	$ActiveSceneManager.Initialise(homeScenePath)
 	$PauseSceneManager.Initialise(pauseScenePath)
 	SetGameState(gameState.PlayingScene)
-	Global.connect("PauseGame", self, "ExecuteGameCommand", [ gameCommand.PauseGame ])
+	Global.connect("PauseGame", Callable(self, "ExecuteGameCommand").bind(gameCommand.PauseGame))
 	print([["Pause",gameCommand.PauseGame], ["Home",gameCommand.GoHome], ["Quit",gameCommand.QuitApp], ["Continue",gameCommand.ContinueGame]])
 
 func ExecuteGameCommand(command):
@@ -36,9 +36,9 @@ func SetGameState(state):
 func _notification(what):
 	print(["Notification", what])
 	match (what):
-		MainLoop.NOTIFICATION_WM_FOCUS_OUT:
+		Window.NOTIFICATION_APPLICATION_FOCUS_OUT:
 			ExecuteGameCommand(gameCommand.PauseGame)
-		MainLoop.NOTIFICATION_WM_QUIT_REQUEST:
+		Window.NOTIFICATION_WM_CLOSE_REQUEST:
 			ExecuteGameCommand(gameCommand.QuitApp)
-		MainLoop.NOTIFICATION_WM_GO_BACK_REQUEST:
+		Window.NOTIFICATION_WM_GO_BACK_REQUEST:
 			ExecuteGameCommand(gameCommand.PauseGame)

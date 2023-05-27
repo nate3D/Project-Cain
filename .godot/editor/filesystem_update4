@@ -1,0 +1,7 @@
+res://default_env.tres
+res://Scenes/Menu/MainMenu.tscn
+res://Scenes/Map/DarkMapTileMap.tres
+res://Scenes/Player/Player.tscn
+res://Scenes/World/DarkWorld.tscn
+res://Scenes/World/DarkWorld.gd
+res://Scenes/Mobs/Ghoul.tscn

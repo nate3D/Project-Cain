@@ -1,8 +1,9 @@
 [remap]
 
 importer="texture"
-type="StreamTexture"
-path="res://.import/Electric Hit 3.png-7fd73151d3fe69c62fb4c64caf59fcec.stex"
+type="CompressedTexture2D"
+uid="uid://x0oy8fbv1efn"
+path="res://.godot/imported/Electric Hit 3.png-7fd73151d3fe69c62fb4c64caf59fcec.ctex"
 metadata={
 "vram_texture": false
 }
@@ -10,26 +11,24 @@ metadata={
 [deps]
 
 source_file="res://Assets/Dark/FX Pack/Sprite Sheets/Electric Hit 3.png"
-dest_files=[ "res://.import/Electric Hit 3.png-7fd73151d3fe69c62fb4c64caf59fcec.stex" ]
+dest_files=["res://.godot/imported/Electric Hit 3.png-7fd73151d3fe69c62fb4c64caf59fcec.ctex"]
 
 [params]
 
 compress/mode=0
+compress/high_quality=false
 compress/lossy_quality=0.7
-compress/hdr_mode=0
-compress/bptc_ldr=0
+compress/hdr_compression=1
 compress/normal_map=0
-flags/repeat=0
-flags/filter=false
-flags/mipmaps=false
-flags/anisotropic=false
-flags/srgb=2
+compress/channel_pack=0
+mipmaps/generate=false
+mipmaps/limit=-1
+roughness/mode=0
+roughness/src_normal=""
 process/fix_alpha_border=true
 process/premult_alpha=false
-process/HDR_as_SRGB=false
-process/invert_color=false
 process/normal_map_invert_y=false
-stream=false
-size_limit=0
-detect_3d=true
-svg/scale=1.0
+process/hdr_as_srgb=false
+process/hdr_clamp_exposure=false
+process/size_limit=0
+detect_3d/compress_to=1

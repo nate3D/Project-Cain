@@ -4,7 +4,7 @@ var _homeSceneInstance;
 var _activeSceneInstance
 
 func Initialise(homeScenePath):
-	_homeSceneInstance = load(homeScenePath).instance()
+	_homeSceneInstance = load(homeScenePath).instantiate()
 	Home()
 
 func SetActiveScene(args):
@@ -12,7 +12,7 @@ func SetActiveScene(args):
 	if (args.has("sceneInstance")):
 		nodeInstance = args.sceneInstance
 	elif (args.has("scenePath")):
-		nodeInstance = load(args.scenePath).instance()
+		nodeInstance = load(args.scenePath).instantiate()
 	else:
 		return
 	
@@ -22,14 +22,14 @@ func SetActiveScene(args):
 	RemoveActiveScene()
 
 	_activeSceneInstance = nodeInstance
-	_activeSceneInstance.connect("SetActiveScene", self, "SetActiveScene")
+	_activeSceneInstance.connect("SetActiveScene", Callable(self, "SetActiveScene"))
 
 	self.add_child(nodeInstance)
 
 func RemoveActiveScene():
 	if (_activeSceneInstance == null):
 		return
-	_activeSceneInstance.disconnect("SetActiveScene", self, "SetActiveScene")
+	_activeSceneInstance.disconnect("SetActiveScene", Callable(self, "SetActiveScene"))
 	remove_child(_activeSceneInstance)
 	_activeSceneInstance = null
 
