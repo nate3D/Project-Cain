@@ -1,5 +1,4 @@
-extends Control
-class_name PauseMenu
+class_name PauseMenu extends Control
 
 enum gameCommand { PauseGame, GoHome, QuitApp, ContinueGame }
 

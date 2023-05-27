@@ -18,6 +18,7 @@ var scenes = [
 var buttonContainer = $VBoxContainer
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	for button in buttonContainer.get_children():
 		button.connect("pressed", Callable(self, "OnButtonPressed").bind(button.name))
 
