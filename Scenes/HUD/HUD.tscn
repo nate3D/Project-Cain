@@ -1,20 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://nme3jhic8tmc"]
+[gd_scene load_steps=3 format=3 uid="uid://nme3jhic8tmc"]
 
 [ext_resource type="Script" path="res://Scenes/HUD/HUD.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://duijrcycucwge" path="res://Fonts/DAGGERSQUARE.otf" id="2"]
 [ext_resource type="Resource" path="res://Scenes/Player/Health.tres" id="3"]
-
-[sub_resource type="FontFile" id="1"]
-fallbacks = Array[Font]([ExtResource("2")])
-face_index = null
-embolden = null
-transform = null
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [node name="HUD" type="CanvasLayer"]
 script = ExtResource("1")
@@ -25,7 +12,6 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 39.0
 pivot_offset = Vector2(445, 267)
-theme_override_fonts/font = SubResource("1")
 text = "HUD"
 
 [node name="Health" type="Label" parent="."]
