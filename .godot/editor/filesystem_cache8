@@ -1,6 +1,6 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1689040323
-default_env.tres::Environment::1389483507830050980::1689040320::0::1::::<><>::
+::res://::1689112024
+default_env.tres::Environment::1389483507830050980::1689042763::0::1::::<><>::
 Global.gd::GDScript::-1::1688812777::0::1::::<>Node<>::
 icon.png::CompressedTexture2D::63996965783007954::1688812777::1689040214::1::::<><>::
 README.md::TextFile::-1::1688812777::0::1::::<><>::
@@ -603,13 +603,13 @@ Ladder.gd::GDScript::-1::1689040214::0::1::::<>Area2D<>::
 Ladder.tscn::PackedScene::6650301952010677814::1689040214::0::1::::<><>::res://Scenes/Ladder/Ladder.gd
 LadderTip.gd::GDScript::-1::1689040214::0::1::::<>Area2D<>::
 LadderTip.tscn::PackedScene::8449170815813207302::1689040214::0::1::::<><>::res://Scenes/Ladder/LadderTip.gd
-::res://Scenes/Map/::1689040320
-DarkMap.tscn::PackedScene::9008406692081488336::1689040214::0::1::::<><>::uid://b4361l8iabcsk
-DarkMapTileMap.tres::TileSet::6375239896490002915::1689040320::0::1::::<><>::uid://3c4w2tyrs0ql::::res://Assets/Dark/Tilesets/DARK Edition Tileset No background.png
+::res://Scenes/Map/::1689042763
+DarkMap.tscn::PackedScene::9008406692081488336::1689042763::0::1::::<><>::uid://b4361l8iabcsk::::res://Scenes/Map/ParallaxBackground.tscn<>uid://cw3hjfy0xf1u2::::res://Scenes/Map/DarkMapTileMap.tres
+DarkMapTileMap.tres::TileSet::6375239896490002915::1689042677::0::1::::<><>::uid://3c4w2tyrs0ql::::res://Assets/Dark/Tilesets/DARK Edition Tileset No background.png
 ParallaxBackground.tscn::PackedScene::4481629012825924542::1689040214::0::1::::<><>::uid://bbe5n81h5je35
-::res://Scenes/Menu/::1689040319
+::res://Scenes/Menu/::1689042762
 MainMenu.gd::GDScript::-1::1689040214::0::1::::MainMenu<>Control<>::
-MainMenu.tscn::PackedScene::2126355579996146859::1689040319::0::1::::<><>::res://Scenes/Menu/MainMenu.gd
+MainMenu.tscn::PackedScene::2126355579996146859::1689042762::0::1::::<><>::res://Scenes/Menu/MainMenu.gd
 Options.tscn::PackedScene::6383518567550017369::1689040214::0::1::::<><>::
 PauseMenu.gd::GDScript::-1::1689040214::0::1::::PauseMenu<>Control<>::
 PauseMenu.tscn::PackedScene::5247876914456378032::1689040214::0::1::::<><>::res://Scenes/Menu/PauseMenu.gd
@@ -617,13 +617,13 @@ PauseMenu.tscn::PackedScene::5247876914456378032::1689040214::0::1::::<><>::res:
 Ghoul.gd::GDScript::-1::1689040214::0::1::::<>CharacterBody2D<>::
 Ghoul.tscn::PackedScene::215646713515990238::1689040214::0::1::::<><>::uid://dg2gf44ojwy0s
 Health.tres::Resource::-1::1688812777::0::1::::<><>::res://Scenes/Player/Health.gd
-::res://Scenes/Player/::1689040320
+::res://Scenes/Player/::1689042762
 BasePlayerState.gd::GDScript::-1::1689040214::0::1::::BasePlayerState<>Node2D<>::
 GunPivot.gd::GDScript::-1::1689040214::0::1::::<>Marker2D<>::
 Health.gd::GDScript::-1::1689040214::0::1::::Health<>Resource<>::
 Health.tres::Resource::-1::1688812777::0::1::::<><>::res://Scenes/Player/Health.gd
 Player.gd::GDScript::-1::1689040214::0::1::::Player<>CharacterBody2D<>::
-Player.tscn::PackedScene::838958710769798230::1689040320::0::1::::<><>::res://Scenes/Player/Player.gd<>res://Scenes/Player/PlayerFSM.gd<>res://Scenes/Player/States/StateAir.gd<>res://Scenes/Player/States/StateIdle.gd<>res://Scenes/Player/States/StateJump.gd<>res://Scenes/Player/States/StateLadder.gd<>res://Scenes/Player/States/StateSwim.gd<>res://Scenes/Player/States/StateWalk.gd<>uid://mq8sjln3kjkl::::res://Scenes/Water/Waves.tscn<>uid://bin4j65pnv2ee::::res://Assets/Dark/Gunslinger/Gunslinger/Gunslinger 48x48 Sprite Sheet no weapons for sprite stacking.png<>uid://50ly22qypeo5::::res://Assets/Dark/Gunslinger/Gun/Guns Sprite Sheet 32x32.png<>res://Animations/Player/run.tres<>res://Animations/Player/jump.tres<>res://Scenes/Player/States/StateRun.gd<>res://Scenes/Player/GunPivot.gd<>res://Animations/Player/walk.tres<>res://Animations/Player/idle.tres
+Player.tscn::PackedScene::838958710769798230::1689042762::0::1::::<><>::res://Scenes/Player/Player.gd<>res://Scenes/Player/PlayerFSM.gd<>res://Scenes/Player/States/StateAir.gd<>res://Scenes/Player/States/StateIdle.gd<>res://Scenes/Player/States/StateJump.gd<>res://Scenes/Player/States/StateLadder.gd<>res://Scenes/Player/States/StateSwim.gd<>res://Scenes/Player/States/StateWalk.gd<>uid://mq8sjln3kjkl::::res://Scenes/Water/Waves.tscn<>uid://bin4j65pnv2ee::::res://Assets/Dark/Gunslinger/Gunslinger/Gunslinger 48x48 Sprite Sheet no weapons for sprite stacking.png<>uid://50ly22qypeo5::::res://Assets/Dark/Gunslinger/Gun/Guns Sprite Sheet 32x32.png<>res://Animations/Player/run.tres<>res://Animations/Player/jump.tres<>res://Scenes/Player/States/StateRun.gd<>res://Scenes/Player/GunPivot.gd<>res://Animations/Player/walk.tres<>res://Animations/Player/idle.tres
 PlayerFSM.gd::GDScript::-1::1689040214::0::1::::PlayerFSM<>Node2D<>::
 ::res://Scenes/Player/States/::1689040214
 StateAir.gd::GDScript::-1::1689040214::0::1::::<>BasePlayerState<>::
@@ -644,6 +644,6 @@ Waves.tscn::PackedScene::877332463104408051::1689040214::0::1::::<><>::uid://c2h
 ::res://Scenes/Weapon/Gunslinger/::1689040214
 RoundProjectile.gd::GDScript::-1::1688812777::0::1::::RoundProjectile<>Area2D<>::
 RoundProjectile.tscn::PackedScene::6729704604201037194::1689040214::0::1::::<><>::uid://bfclj8bs4st6g
-::res://Scenes/World/::1689040320
+::res://Scenes/World/::1689042762
 DarkWorld.gd::GDScript::-1::1689040214::0::1::::<>Node<>::
-DarkWorld.tscn::PackedScene::7112032469719142257::1689040320::0::1::::<><>::uid://nme3jhic8tmc::::res://Scenes/HUD/HUD.tscn<>uid://d1l0e3icptcd1::::res://Scenes/Map/DarkMap.tscn<>res://Scenes/World/DarkWorld.gd
+DarkWorld.tscn::PackedScene::7112032469719142257::1689042762::0::1::::<><>::uid://nme3jhic8tmc::::res://Scenes/HUD/HUD.tscn<>uid://d1l0e3icptcd1::::res://Scenes/Map/DarkMap.tscn<>res://Scenes/World/DarkWorld.gd
