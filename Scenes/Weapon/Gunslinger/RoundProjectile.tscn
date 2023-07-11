@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Scenes/Weapon/Gunslinger/RoundProjectile.gd" id="2"]
 
 [node name="RoundProjectile" type="Area2D"]
+collision_mask = 6
 script = ExtResource("2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
