@@ -1,16 +1,17 @@
 extends BasePlayerState
 
-export var midair_speed : float = 300
+@export 
+var midair_speed : float = 300
 
-func enter(player: KinematicBody2D):
+func enter(player: CharacterBody2D):
 	if player.anim.current_animation == "jump":
-		yield (player.anim, "animation_finished")
+		await player.anim.animation_finished
 		if player.state_machine.active_state.tag == tag:
-			.enter(player) # Base class
+			super.enter(player) # Base class
 	else:
-		.enter(player) # Base class
+		super.enter(player) # Base class
 
-func run(player: KinematicBody2D):
+func run(player: CharacterBody2D):
 	# Handle running speed modifier
 	var speed_modifier = midair_speed
 	if player.running:

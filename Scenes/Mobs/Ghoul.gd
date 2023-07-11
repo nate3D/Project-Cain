@@ -1,9 +1,14 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
-onready var anim_sprite : AnimatedSprite = $AnimatedSprite
-onready var raycast : RayCast2D = $RayCast2D
+@onready 
+var anim_sprite : AnimatedSprite2D = $AnimatedSprite2D
 
-export (Resource) var Health
+@onready 
+var raycast : RayCast2D = $RayCast2D
+
+@export
+var Health: Resource
+
 var attack_damage : int = 5
 var attack_cooldown_time : int = 1500
 var next_attack_time : int = 0
@@ -17,7 +22,6 @@ enum State {
 
 var speed : int = 100
 var gravity : int = 60
-var velocity : Vector2 = Vector2.ZERO
 
 var player : Player = null
 
@@ -25,12 +29,11 @@ var anim = "idle"
 var state = State.IDLE
 
 func _ready():
-	Health.connect("health_zero", self, "_die")
+	Health.connect("health_zero", Callable(self, "_die"))
 	Health.reset()
-	anim_sprite.playing = true
 	anim_sprite.play('idle')
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	var new_anim = anim
 	
 	if state == State.IDLE:
@@ -41,12 +44,19 @@ func _physics_process(delta):
 		if player:
 			velocity = Vector2(position.direction_to(player.position).x * speed, 0)
 		anim_sprite.flip_h = velocity.x < 0
-		raycast.cast_to.y = velocity.normalized().x * 22
+		raycast.target_position.y = velocity.normalized().x * 22
 		velocity += Vector2.DOWN * gravity
-		velocity = move_and_slide(velocity, Vector2.UP, true, 4, PI/4, false)
+		set_velocity(velocity)
+		set_up_direction(Vector2.UP)
+		set_floor_stop_on_slope_enabled(true)
+		set_max_slides(4)
+		set_floor_max_angle(PI/4)
+		# TODOConverter40 infinite_inertia were removed in Godot 4.0 - previous value `false`
+		move_and_slide()
+		velocity = velocity
 		
 	elif state == State.ATTACKING:
-		var now = OS.get_ticks_msec()
+		var now = Time.get_ticks_msec()
 		if now >= next_attack_time:
 			var target = raycast.get_collider()
 			if target and target is Player and player._get_health() > 0:
@@ -64,7 +74,7 @@ func hit(damage):
 func _die():
 	velocity = Vector2.ZERO
 	anim_sprite.play('dying')
-	yield(anim_sprite, "animation_finished")
+	await anim_sprite.animation_finished
 	queue_free()
 
 func _on_VisibilityNotifier2D_screen_exited():
@@ -93,4 +103,4 @@ func _on_AnimatedSprite_frame_changed():
 		var target = raycast.get_collider()
 		if target and target is Player and player._get_health() > 0:
 			player.hit(attack_damage)
-			yield(anim_sprite, "animation_finished")
+			await anim_sprite.animation_finished

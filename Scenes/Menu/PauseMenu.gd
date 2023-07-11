@@ -1,5 +1,4 @@
-extends Control
-class_name PauseMenu
+class_name PauseMenu extends Control
 
 enum gameCommand { PauseGame, GoHome, QuitApp, ContinueGame }
 
@@ -10,15 +9,16 @@ signal ResumeSelected
 
 var options = "res://Scenes/Menu/Options.tscn"
 
-onready var buttonContainer = $VBoxContainer
+@onready 
+var buttonContainer = $VBoxContainer
 
 func _ready():
 	for button in buttonContainer.get_children():
-		button.connect("pressed", self, "OnButtonPressed", [ button.name ])
+		button.connect("pressed", Callable(self, "OnButtonPressed").bind(button.name))
 
-func OnButtonPressed(name):
-	print(str("Clicked ", name))
-	match name:
+func OnButtonPressed(_name):
+	print(str("Clicked ", _name))
+	match _name:
 		"ResumeButton":
 			emit_signal("ResumeSelected")
 		"StartButton":

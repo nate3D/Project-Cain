@@ -1,6 +1,7 @@
 extends BasePlayerState
 
-export var run_speed : float = 500 setget set_run_speed, get_run_speed
+@export 
+var run_speed : float = 500: get = get_run_speed, set = set_run_speed
 
 func set_run_speed(new_speed):
 	run_speed = new_speed
@@ -8,7 +9,7 @@ func set_run_speed(new_speed):
 func get_run_speed():
 	return run_speed
 
-func run(player: KinematicBody2D):
+func run(player: CharacterBody2D):
 	player.play("run")
 	if player.vertical > 0:
 		player.collision_layer = 1

@@ -1,9 +1,10 @@
-extends KinematicBody2D
+extends CharacterBody2D
 class_name Player
 
 signal hud
 
-export var gravity : float = 60
+@export 
+var gravity : float = 60
 
 var Bullet : PackedScene = load("res://Scenes/Weapon/Gunslinger/RoundProjectile.tscn")
 var Health2 = load("res://Scenes/Player/Health.tres")
@@ -11,33 +12,46 @@ var Health2 = load("res://Scenes/Player/Health.tres")
 var horizontal : int = 0
 var vertical : int = 0
 var up : bool = false
-var velocity: Vector2 = Vector2.ZERO
-var vx: float = 0 setget _set_vx, _get_vx
-var vy: float = 0 setget _set_vy, _get_vy
+var vx: float = 0: get = _get_vx, set = _set_vx
+var vy: float = 0: get = _get_vy, set = _set_vy
 
 var underwater : bool = false
 var running : bool = false
-var grounded : bool = false setget ,_get_grounded
-var jumping : bool = false setget ,_get_jumping
+var grounded : bool = false: get = _get_grounded
+var jumping : bool = false: get = _get_jumping
 var ladder_area : bool = false
 var ladder_tip : bool = false
 var ladder_x : float
 var flip : bool = false
 
-onready var jump_timer : Timer = $Timers/JumpTimer
-onready var floor_timer : Timer = $Timers/FloorTimer
-onready var ladder_timer : Timer = $Timers/LadderTimer
-onready var platform_timer : Timer = $Timers/PlatformTimer
-onready var sprite : Sprite = $Gunslinger
-onready var anim : AnimationPlayer = $Gunslinger/AnimationPlayer
-onready var state_machine: PlayerFSM = $PlayerStates
-onready var tween : Tween = $Tween
-onready var waves : Particles2D = $Waves
+@onready 
+var jump_timer : Timer = $Timers/JumpTimer
+
+@onready 
+var floor_timer : Timer = $Timers/FloorTimer
+
+@onready 
+var ladder_timer : Timer = $Timers/LadderTimer
+
+@onready 
+var platform_timer : Timer = $Timers/PlatformTimer
+
+@onready 
+var sprite : Sprite2D = $Gunslinger
+
+@onready 
+var anim : AnimationPlayer = $Gunslinger/AnimationPlayer
+
+@onready 
+var state_machine: PlayerFSM = $PlayerStates
+
+@onready 
+var waves : GPUParticles2D = $Waves
 
 # Weapons
-onready var gun_pivot : Position2D = $GunPivot
-onready var gun1 : Sprite = $GunPivot/Gun1
-onready var gun1_anim : AnimationPlayer = $GunPivot/Gun1/AnimationPlayer
+@onready var gun_pivot : Marker2D = $GunPivot
+@onready var gun1 : Sprite2D = $GunPivot/Gun1
+@onready var gun1_anim : AnimationPlayer = $GunPivot/Gun1/AnimationPlayer
 
 # Attack
 var attack_cooldown_time : int = 425
@@ -87,7 +101,14 @@ func update_player():
 
 func move():
 	var _old = velocity
-	velocity = move_and_slide(velocity, Vector2.UP, true, 4, PI/4, false)
+	set_velocity(velocity)
+	set_up_direction(Vector2.UP)
+	set_floor_stop_on_slope_enabled(true)
+	set_max_slides(4)
+	set_floor_max_angle(PI/4)
+	# TODOConverter40 infinite_inertia were removed in Godot 4.0 - previous value `false`
+	move_and_slide()
+	velocity = velocity
 
 func apply_gravity(_gravity:float):
 	velocity += Vector2.DOWN * _gravity
@@ -98,6 +119,7 @@ func play(animation:String):
 	anim.play(animation)
 
 func tween_to_ladder():
+	var tween = create_tween()
 	var target = Vector2(ladder_x, position.y)
 	tween.interpolate_property(self, "position", position, target,
 		0.05, Tween.TRANS_LINEAR, Tween.EASE_OUT)
@@ -107,14 +129,14 @@ func can_climb():
 	return ladder_area and ladder_timer.is_stopped()
 	
 func shoot():
-	var now = OS.get_ticks_msec()
+	var now = Time.get_ticks_msec()
 	if now >= next_attack_time:
-		var b = Bullet.instance()
+		var b = Bullet.instantiate()
 		owner.add_child(b)
 		b.shoot(get_global_mouse_position(), gun1.global_position)
 		gun1_anim.play('shoot')
 		next_attack_time = now + attack_cooldown_time
-		yield(gun1_anim, "animation_finished")
+		await gun1_anim.animation_finished
 		gun1_anim.play('idle')
 	
 func hit(damage):

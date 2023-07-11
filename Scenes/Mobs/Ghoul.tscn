@@ -1,194 +1,273 @@
-[gd_scene load_steps=35 format=2]
+[gd_scene load_steps=35 format=3 uid="uid://dcpw1mnayhgw"]
 
-[ext_resource path="res://Assets/Dark/Mobs/Ghoul/Ghoul Sprite Sheet 62 x 33.png" type="Texture" id=1]
-[ext_resource path="res://Scenes/Mobs/Ghoul.gd" type="Script" id=2]
-[ext_resource path="res://Scenes/Mobs/Health.tres" type="Resource" id=3]
+[ext_resource type="Texture2D" uid="uid://dg2gf44ojwy0s" path="res://Assets/Dark/Mobs/Ghoul/Ghoul Sprite Sheet 62 x 33.png" id="1"]
+[ext_resource type="Script" path="res://Scenes/Mobs/Ghoul.gd" id="2"]
+[ext_resource type="Resource" path="res://Scenes/Mobs/Health.tres" id="3"]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 62, 33 )
+[sub_resource type="AtlasTexture" id="15"]
+atlas = ExtResource("1")
+region = Rect2(0, 66, 62, 33)
 
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 62, 0, 62, 33 )
+[sub_resource type="AtlasTexture" id="16"]
+atlas = ExtResource("1")
+region = Rect2(62, 66, 62, 33)
 
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 124, 0, 62, 33 )
+[sub_resource type="AtlasTexture" id="17"]
+atlas = ExtResource("1")
+region = Rect2(124, 66, 62, 33)
 
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 186, 0, 62, 33 )
+[sub_resource type="AtlasTexture" id="18"]
+atlas = ExtResource("1")
+region = Rect2(186, 66, 62, 33)
 
-[sub_resource type="AtlasTexture" id=6]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 33, 62, 33 )
+[sub_resource type="AtlasTexture" id="19"]
+atlas = ExtResource("1")
+region = Rect2(248, 66, 62, 33)
 
-[sub_resource type="AtlasTexture" id=7]
-atlas = ExtResource( 1 )
-region = Rect2( 62, 33, 62, 33 )
+[sub_resource type="AtlasTexture" id="20"]
+atlas = ExtResource("1")
+region = Rect2(310, 66, 62, 33)
 
-[sub_resource type="AtlasTexture" id=8]
-atlas = ExtResource( 1 )
-region = Rect2( 124, 33, 62, 33 )
+[sub_resource type="AtlasTexture" id="21"]
+atlas = ExtResource("1")
+region = Rect2(372, 66, 62, 33)
 
-[sub_resource type="AtlasTexture" id=9]
-atlas = ExtResource( 1 )
-region = Rect2( 186, 33, 62, 33 )
+[sub_resource type="AtlasTexture" id="24"]
+atlas = ExtResource("1")
+region = Rect2(0, 132, 62, 33)
 
-[sub_resource type="AtlasTexture" id=10]
-atlas = ExtResource( 1 )
-region = Rect2( 248, 33, 62, 33 )
+[sub_resource type="AtlasTexture" id="25"]
+atlas = ExtResource("1")
+region = Rect2(62, 132, 62, 33)
 
-[sub_resource type="AtlasTexture" id=11]
-atlas = ExtResource( 1 )
-region = Rect2( 310, 33, 62, 33 )
+[sub_resource type="AtlasTexture" id="26"]
+atlas = ExtResource("1")
+region = Rect2(124, 132, 62, 33)
 
-[sub_resource type="AtlasTexture" id=12]
-atlas = ExtResource( 1 )
-region = Rect2( 372, 33, 62, 33 )
+[sub_resource type="AtlasTexture" id="27"]
+atlas = ExtResource("1")
+region = Rect2(186, 132, 62, 33)
 
-[sub_resource type="AtlasTexture" id=13]
-atlas = ExtResource( 1 )
-region = Rect2( 434, 33, 62, 33 )
+[sub_resource type="AtlasTexture" id="28"]
+atlas = ExtResource("1")
+region = Rect2(248, 132, 62, 33)
 
-[sub_resource type="AtlasTexture" id=14]
-atlas = ExtResource( 1 )
-region = Rect2( 496, 33, 62, 33 )
+[sub_resource type="AtlasTexture" id="29"]
+atlas = ExtResource("1")
+region = Rect2(310, 132, 62, 33)
 
-[sub_resource type="AtlasTexture" id=24]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 132, 62, 33 )
+[sub_resource type="AtlasTexture" id="30"]
+atlas = ExtResource("1")
+region = Rect2(372, 132, 62, 33)
 
-[sub_resource type="AtlasTexture" id=25]
-atlas = ExtResource( 1 )
-region = Rect2( 62, 132, 62, 33 )
+[sub_resource type="AtlasTexture" id="1"]
+atlas = ExtResource("1")
+region = Rect2(0, 0, 62, 33)
 
-[sub_resource type="AtlasTexture" id=26]
-atlas = ExtResource( 1 )
-region = Rect2( 124, 132, 62, 33 )
+[sub_resource type="AtlasTexture" id="2"]
+atlas = ExtResource("1")
+region = Rect2(62, 0, 62, 33)
 
-[sub_resource type="AtlasTexture" id=27]
-atlas = ExtResource( 1 )
-region = Rect2( 186, 132, 62, 33 )
+[sub_resource type="AtlasTexture" id="3"]
+atlas = ExtResource("1")
+region = Rect2(124, 0, 62, 33)
 
-[sub_resource type="AtlasTexture" id=28]
-atlas = ExtResource( 1 )
-region = Rect2( 248, 132, 62, 33 )
+[sub_resource type="AtlasTexture" id="4"]
+atlas = ExtResource("1")
+region = Rect2(186, 0, 62, 33)
 
-[sub_resource type="AtlasTexture" id=29]
-atlas = ExtResource( 1 )
-region = Rect2( 310, 132, 62, 33 )
+[sub_resource type="AtlasTexture" id="6"]
+atlas = ExtResource("1")
+region = Rect2(0, 33, 62, 33)
 
-[sub_resource type="AtlasTexture" id=30]
-atlas = ExtResource( 1 )
-region = Rect2( 372, 132, 62, 33 )
+[sub_resource type="AtlasTexture" id="7"]
+atlas = ExtResource("1")
+region = Rect2(62, 33, 62, 33)
 
-[sub_resource type="AtlasTexture" id=15]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 66, 62, 33 )
+[sub_resource type="AtlasTexture" id="8"]
+atlas = ExtResource("1")
+region = Rect2(124, 33, 62, 33)
 
-[sub_resource type="AtlasTexture" id=16]
-atlas = ExtResource( 1 )
-region = Rect2( 62, 66, 62, 33 )
+[sub_resource type="AtlasTexture" id="9"]
+atlas = ExtResource("1")
+region = Rect2(186, 33, 62, 33)
 
-[sub_resource type="AtlasTexture" id=17]
-atlas = ExtResource( 1 )
-region = Rect2( 124, 66, 62, 33 )
+[sub_resource type="AtlasTexture" id="10"]
+atlas = ExtResource("1")
+region = Rect2(248, 33, 62, 33)
 
-[sub_resource type="AtlasTexture" id=18]
-atlas = ExtResource( 1 )
-region = Rect2( 186, 66, 62, 33 )
+[sub_resource type="AtlasTexture" id="11"]
+atlas = ExtResource("1")
+region = Rect2(310, 33, 62, 33)
 
-[sub_resource type="AtlasTexture" id=19]
-atlas = ExtResource( 1 )
-region = Rect2( 248, 66, 62, 33 )
+[sub_resource type="AtlasTexture" id="12"]
+atlas = ExtResource("1")
+region = Rect2(372, 33, 62, 33)
 
-[sub_resource type="AtlasTexture" id=20]
-atlas = ExtResource( 1 )
-region = Rect2( 310, 66, 62, 33 )
+[sub_resource type="AtlasTexture" id="13"]
+atlas = ExtResource("1")
+region = Rect2(434, 33, 62, 33)
 
-[sub_resource type="AtlasTexture" id=21]
-atlas = ExtResource( 1 )
-region = Rect2( 372, 66, 62, 33 )
+[sub_resource type="AtlasTexture" id="14"]
+atlas = ExtResource("1")
+region = Rect2(496, 33, 62, 33)
 
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
+[sub_resource type="SpriteFrames" id="5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("15")
+}, {
+"duration": 1.0,
+"texture": SubResource("16")
+}, {
+"duration": 1.0,
+"texture": SubResource("17")
+}, {
+"duration": 1.0,
+"texture": SubResource("18")
+}, {
+"duration": 1.0,
+"texture": SubResource("19")
+}, {
+"duration": 1.0,
+"texture": SubResource("20")
+}, {
+"duration": 1.0,
+"texture": SubResource("21")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("24")
+}, {
+"duration": 1.0,
+"texture": SubResource("25")
+}, {
+"duration": 1.0,
+"texture": SubResource("26")
+}, {
+"duration": 1.0,
+"texture": SubResource("27")
+}, {
+"duration": 1.0,
+"texture": SubResource("28")
+}, {
+"duration": 1.0,
+"texture": SubResource("29")
+}, {
+"duration": 1.0,
+"texture": SubResource("30")
+}],
+"loop": true,
+"name": &"dying",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("1")
+}, {
+"duration": 1.0,
+"texture": SubResource("2")
+}, {
+"duration": 1.0,
+"texture": SubResource("3")
+}, {
+"duration": 1.0,
+"texture": SubResource("4")
+}],
 "loop": false,
-"name": "idle",
+"name": &"idle",
 "speed": 10.0
 }, {
-"frames": [ SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 10 ), SubResource( 11 ), SubResource( 12 ), SubResource( 13 ), SubResource( 14 ) ],
-"loop": true,
-"name": "walk",
-"speed": 10.0
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("6")
 }, {
-"frames": [ SubResource( 24 ), SubResource( 25 ), SubResource( 26 ), SubResource( 27 ), SubResource( 28 ), SubResource( 29 ), SubResource( 30 ) ],
-"loop": true,
-"name": "dying",
-"speed": 10.0
+"duration": 1.0,
+"texture": SubResource("7")
 }, {
-"frames": [ SubResource( 15 ), SubResource( 16 ), SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 20 ), SubResource( 21 ) ],
+"duration": 1.0,
+"texture": SubResource("8")
+}, {
+"duration": 1.0,
+"texture": SubResource("9")
+}, {
+"duration": 1.0,
+"texture": SubResource("10")
+}, {
+"duration": 1.0,
+"texture": SubResource("11")
+}, {
+"duration": 1.0,
+"texture": SubResource("12")
+}, {
+"duration": 1.0,
+"texture": SubResource("13")
+}, {
+"duration": 1.0,
+"texture": SubResource("14")
+}],
 "loop": true,
-"name": "attack",
+"name": &"walk",
 "speed": 10.0
-} ]
+}]
 
-[sub_resource type="CapsuleShape2D" id=22]
+[sub_resource type="CapsuleShape2D" id="22"]
 radius = 3.0
 height = 14.0
 
-[sub_resource type="CircleShape2D" id=23]
+[sub_resource type="CircleShape2D" id="23"]
 radius = 344.023
 
-[sub_resource type="RectangleShape2D" id=31]
-extents = Vector2( 22, 11 )
+[sub_resource type="RectangleShape2D" id="31"]
+size = Vector2(22, 11)
 
-[node name="Ghoul" type="KinematicBody2D" groups=["mobs"]]
+[node name="Ghoul" type="CharacterBody2D" groups=["mobs"]]
 collision_layer = 2
 collision_mask = 5
-script = ExtResource( 2 )
-Health = ExtResource( 3 )
+script = ExtResource("2")
+Health = ExtResource("3")
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 5 )
-animation = "idle"
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("5")
+animation = &"idle"
 frame = 3
-playing = true
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2( 0, 4 )
-shape = SubResource( 22 )
+position = Vector2(0, 4)
+shape = SubResource("22")
 
-[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
 visible = false
-position = Vector2( 0.5, 4 )
-scale = Vector2( 0.45, 1.2 )
+position = Vector2(0.5, 4)
+scale = Vector2(0.45, 1.2)
 
 [node name="ChaseArea" type="Area2D" parent="."]
 visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ChaseArea"]
-shape = SubResource( 23 )
+shape = SubResource("23")
 
 [node name="AttackArea" type="Area2D" parent="."]
 visible = false
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2( 0, 1 )
-shape = SubResource( 31 )
+position = Vector2(0, 1)
+shape = SubResource("31")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 visible = false
 rotation = -1.5708
-enabled = true
-cast_to = Vector2( 0, 19 )
+target_position = Vector2(0, 19)
 
-[connection signal="frame_changed" from="AnimatedSprite" to="." method="_on_AnimatedSprite_frame_changed"]
-[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
+[connection signal="frame_changed" from="AnimatedSprite2D" to="." method="_on_AnimatedSprite_frame_changed"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]
 [connection signal="body_entered" from="ChaseArea" to="." method="_on_ChaseArea_body_entered"]
 [connection signal="body_exited" from="ChaseArea" to="." method="_on_ChaseArea_body_exited"]
 [connection signal="body_entered" from="AttackArea" to="." method="_on_AttackArea_body_entered"]

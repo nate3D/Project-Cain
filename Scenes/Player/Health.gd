@@ -4,8 +4,11 @@ class_name Health
 signal health_changed(current_value)
 signal health_zero
 
-export (int) var max_value setget ,_get_max_health
-export (int) var current_value setget ,_get_current_health
+@export
+var max_value: int : get = _get_max_health
+
+@export
+var current_value: int : get = _get_current_health
 
 func reset():
 	current_value = max_value

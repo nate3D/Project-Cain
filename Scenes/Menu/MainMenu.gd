@@ -14,15 +14,17 @@ var scenes = [
 		}
 	]
 
-onready var buttonContainer = $VBoxContainer
+@onready 
+var buttonContainer = $VBoxContainer
 
 func _ready():
+	process_mode = Node.PROCESS_MODE_ALWAYS
 	for button in buttonContainer.get_children():
-		button.connect("pressed", self, "OnButtonPressed", [ button.name ])
+		button.connect("pressed", Callable(self, "OnButtonPressed").bind(button.name))
 
-func OnButtonPressed(name):
-	print(str("Clicked ", name))
-	match name:
+func OnButtonPressed(_name):
+	print(str("Clicked ", _name))
+	match _name:
 		"StartButton":
 			print(scenes[0])
 			emit_signal("SetActiveScene",  scenes[0])

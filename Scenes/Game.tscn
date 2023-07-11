@@ -1,20 +1,20 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=5 format=3 uid="uid://cnafu5mlc7qpy"]
 
-[ext_resource path="res://Global/Game.gd" type="Script" id=1]
-[ext_resource path="res://Global/GameStateManager.gd" type="Script" id=2]
-[ext_resource path="res://Global/ActiveSceneManager.gd" type="Script" id=3]
-[ext_resource path="res://Global/PauseSceneManager.gd" type="Script" id=4]
+[ext_resource type="Script" path="res://Global/Game.gd" id="1"]
+[ext_resource type="Script" path="res://Global/GameStateManager.gd" id="2"]
+[ext_resource type="Script" path="res://Global/ActiveSceneManager.gd" id="3"]
+[ext_resource type="Script" path="res://Global/PauseSceneManager.gd" id="4"]
 
 [node name="Game" type="Node"]
-script = ExtResource( 1 )
+script = ExtResource("1")
 
 [node name="GameStateManager" type="Node" parent="."]
-script = ExtResource( 2 )
+script = ExtResource("2")
 
 [node name="ActiveSceneManager" type="Node" parent="GameStateManager"]
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="PauseSceneManager" type="Node" parent="GameStateManager"]
-script = ExtResource( 4 )
+script = ExtResource("4")
 
 [node name="PauseMenuLayer" type="CanvasLayer" parent="GameStateManager/PauseSceneManager"]

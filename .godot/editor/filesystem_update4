@@ -1,0 +1,6 @@
+res://default_env.tres
+res://Scenes/Map/DarkMap.tscn
+res://Scenes/Map/DarkMapTileMap.tres
+res://Scenes/Menu/MainMenu.tscn
+res://Scenes/Player/Player.tscn
+res://Scenes/World/DarkWorld.tscn
