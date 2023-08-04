@@ -234,7 +234,7 @@ Health = ExtResource("3")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("5")
-animation = &"dying"
+animation = &"idle"
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 visible = false
