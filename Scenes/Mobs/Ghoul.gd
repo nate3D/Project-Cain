@@ -73,9 +73,10 @@ func hit(damage):
 	
 func _die():
 	velocity = Vector2.ZERO
+	state = State.DYING
 	anim_sprite.play('dying')
-	await anim_sprite.animation_finished
-	queue_free()
+	# Ghoul will be free/killed after animation is complete in _on_AnimatedSprite_frame_changed
+	# await anim_sprite.animation_finished does not work here due to looping of animations
 
 func _on_VisibilityNotifier2D_screen_exited():
 	queue_free() # TODO: Revisit as we don't want to simply erase off-screen enemies
@@ -104,3 +105,5 @@ func _on_AnimatedSprite_frame_changed():
 		if target and target is Player and player._get_health() > 0:
 			player.hit(attack_damage)
 			await anim_sprite.animation_finished
+	if anim_sprite.animation == 'dying' and anim_sprite.frame == 6:
+		queue_free() 
