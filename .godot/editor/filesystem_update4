@@ -1,11 +1,10 @@
 res://default_env.tres
-res://Scenes/Map/DarkMap.tscn
-res://Scenes/Map/DarkMapTileMap.tres
 res://Scenes/Menu/MainMenu.tscn
+res://Scenes/Map/DarkMapTileMap.tres
 res://Scenes/Player/Player.tscn
 res://Scenes/World/DarkWorld.tscn
+res://Scenes/Map/DarkMap.tscn
 res://Scenes/HUD/HUD.tscn
 res://Scenes/Game.tscn
 res://Scenes/Mobs/Ghoul.tscn
 res://Scenes/Weapon/Gunslinger/RoundProjectile.tscn
-res://Scenes/Weapon/Gunslinger/RoundProjectile.gd
